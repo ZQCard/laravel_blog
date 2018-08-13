@@ -14,7 +14,7 @@ class AdminsTableSeeder extends Seeder
         factory('App\Models\Admin',1)->create([
             'username' => 'card',
             'email'    => '445864742@qq.com',
-            'password' => bcrypt('445864742'),
+            'password' => bcrypt('123456'),
         ]);
     }
 }

@@ -13,6 +13,8 @@
     <link href="{{ asset('hAdmin/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('hAdmin/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('hAdmin/css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('layer/theme/default/layer.css') }}" rel="stylesheet">
+    <link href="{{ asset('hAdmin/css/login.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -45,18 +47,53 @@
     </div>
 </div>
 <script src="{{ asset('hAdmin/js/jquery.min.js') }}"></script>
+<script src="{{ asset('layer/layer.js') }}"></script>
 </body>
     <script>
         $(function () {
             $("#login").click(function () {
                 var form = $("form");
-                $.post(form.attr('action'),form.serialize(),success);
+                $.ajax({
+                    url : form.attr('action'),
+                    type : 'post',
+                    data : form.serialize(),
+                    dataType : 'json',
+                    success : success,
+                    error : error
+                });
             });
         });
 
-        //请求成功回调函数
+        // 请求成功回调函数
         function success(res) {
-            console.log(res)
+            layer.msg("登录成功", function () {
+                layer.load(1, {
+                    shade: [0.1,'#fff'] //0.1透明度的白色背景
+                });
+                window.location.href = "{{ route('admin.index') }}";
+            });
+        }
+
+        function error(res) {
+            console.log('error');
+            console.log(res);
+            if (res.status !== 200){
+                layer.msg(getFirstError(res));
+            } else {
+                layer.msg("登录成功", function () {
+                    layer.load(1, {
+                        shade: [0.1,'#fff'] //0.1透明度的白色背景
+                    });
+                    window.location.href = "{{ route('admin.index') }}";
+                });
+            }
+        }
+
+        function getFirstError(object){
+            var arr = object.responseJSON.errors;
+            for (var i in arr){
+                return arr[i];
+            }
         }
     </script>
 </html>
