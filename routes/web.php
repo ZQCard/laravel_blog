@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/************************ 前台路由组 *****************************/
+Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
+    $router->get('/', 'IndexController@index')->name('home');
+});
+
+/************************ 后台路由组 *****************************/
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'], function($router){
+    $router->get('/login', 'LoginController@login')->name('admin.login');
 });
