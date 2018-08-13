@@ -23,4 +23,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     $router->post('/logout', 'LoginController@logout')->name('admin.logout');
     $router->get('/', 'AdminController@index')->name('admin.index');
     $router->get('/index', 'AdminController@index')->name('admin.index');
+    $router->get('/test', 'AdminController@test')->name('admin.test');
 });
