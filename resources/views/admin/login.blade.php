@@ -28,11 +28,13 @@
 <div class="signinpanel">
     <div class="row">
         <div class="col-sm-12">
-            <form method="post" action="index.html">
+            <form method="post" action="{{ route('admin.login') }}">
                 <p class="m-t-md" style="text-align: center">诗与远方</p>
-                <input type="text" class="form-control uname" placeholder="用户名" />
-                <input type="password" class="form-control pword m-b" placeholder="密码" />
-                <button class="btn btn-success btn-block">登录</button>
+                {{ csrf_field() }}
+                <input type="text" class="form-control uname" name="username" placeholder="用户名" />
+                <input type="password" class="form-control pword m-b" name="password" placeholder="密码" />
+                <p id="login" class="btn btn-success btn-block"><strong>登陆</strong></p>
+
             </form>
         </div>
     </div>
@@ -42,6 +44,21 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('hAdmin/js/jquery.min.js') }}"></script>
 </body>
+    <script>
+        $(function () {
+            $("#login").click(function () {
+                var form = $("form");
+                $.post(form.attr('action'),form.serialize(),success);
+            });
+        });
 
+        //请求成功回调函数
+        function success(res) {
+            console.log(res)
+        }
+    </script>
 </html>
+
+

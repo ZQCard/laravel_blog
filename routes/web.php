@@ -18,5 +18,9 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
 
 /************************ 后台路由组 *****************************/
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'], function($router){
-    $router->get('/login', 'LoginController@login')->name('admin.login');
+    $router->get('/login', 'LoginController@index')->name('admin.login');
+    $router->post('/login', 'LoginController@login')->name('admin.logout');
+    $router->post('/logout', 'LoginController@logout')->name('admin.logout');
+    $router->get('/', 'AdminController@index');
+    $router->get('/index', 'AdminController@index');
 });
