@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b711217006a4fc86aad6000028f9eab",
+    "content-hash": "8e36c183d6995201f662527e9f5b528e",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2763,6 +2763,51 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "zedisdog/laravel-schema-extend",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zedisdog/laravel-schema-extend.git",
+                "reference": "9174608d996aeaa8696c03e9002a7c460afae2ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zedisdog/laravel-schema-extend/zipball/9174608d996aeaa8696c03e9002a7c460afae2ef",
+                "reference": "9174608d996aeaa8696c03e9002a7c460afae2ef",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/framework": "5.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jialeo\\LaravelSchemaExtend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "WTFPL"
+            ],
+            "authors": [
+                {
+                    "name": "zed",
+                    "email": "2692273254@qq.com"
+                }
+            ],
+            "description": "supplement for eloquent migration",
+            "time": "2018-05-28T02:57:48+00:00"
         }
     ],
     "packages-dev": [

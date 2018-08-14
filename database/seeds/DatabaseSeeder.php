@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 生成管理员数据
-        $this->call(AdminsTableSeeder::class);
+        // $this->call(AdminsTableSeeder::class);
+        // 生成标签数据
+        // $this->call(TagsTableSeeder::class);
     }
 }

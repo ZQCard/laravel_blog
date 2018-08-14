@@ -56,13 +56,13 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">测试大分类</span>
+                        <i class="fa fa-tags"></i>
+                        <span class="nav-label">标签管理</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="{{ route('admin.test') }}">测试小分类</a>
+                            <a class="J_menuItem" href="#"><i class="fa fa-tag"></i>标签列表</a>
                         </li>
                     </ul>
                 </li>
