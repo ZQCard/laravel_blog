@@ -2,13 +2,56 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\TagRequest;
+use App\Models\Tag;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class TagController extends Controller
+class TagController extends AdminController
 {
-    public function index()
+    // 标签列表
+    public function index(Request $request, Tag $tag)
     {
-        echo 1;die;
+        $tags = $tag->withOrder($request->order)->paginate(20);
+        return view('admin.tags.list', compact('tags'));
+    }
+
+    // 创建标签
+    public function create()
+    {
+        return view('admin.tags.create_and_edit');
+    }
+
+    // 保存标签
+    public function store(TagRequest $request,Tag $tag)
+    {
+        $tag->fill($request->all());
+        if ($tag->save()){
+            return $this->success('创建标签成功', route('tag.index'));
+        }else{
+            return $this->fail('数据库保存失败');
+        }
+    }
+
+    // 编辑标签
+    public function edit(Tag $tag)
+    {
+        return view('admin.tags.create_and_edit', compact('tag'));
+    }
+
+    // 更新标签
+    public function update(TagRequest $request,Tag $tag)
+    {
+        if ($tag->update($request->all())){
+            return $this->success('标签成功', route('tag.index'));
+        }else{
+            return $this->fail('数据库保存失败');
+        }
+    }
+
+    // 删除标签
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+        return redirect()->route('tag.index')->with('success', '删除成功!');
     }
 }

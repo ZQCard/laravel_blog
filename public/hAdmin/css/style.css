@@ -45,6 +45,10 @@ h5 {
     font-weight: 600;
 }
 
+td, th{
+    text-align: center;
+}
+
 a:focus {
     outline: none;
 }

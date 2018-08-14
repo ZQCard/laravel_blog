@@ -21,7 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     $router->get('login', 'LoginController@index')->name('admin.login');
     $router->post('login', 'LoginController@login');
     $router->post('logout', 'LoginController@logout')->name('admin.logout');
-    $router->get('/', 'AdminController@index')->name('admin.index');
-    $router->get('index', 'AdminController@index')->name('admin.index');
+    $router->get('/', 'AdminController@home')->name('admin.index');
+    $router->get('index', 'AdminController@home')->name('admin.index');
     Route::resource('tag', 'TagController');
 });

@@ -7,18 +7,33 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    protected $ajaxReturnData = ['url' => '', 'message' => '操作成功'];
+
     public function __construct()
     {
         $this->middleware('auth.admin:admin');
     }
 
-    public function index()
+    public function home()
     {
         return view('admin.index');
     }
 
-    public function test()
+    public function success($message = '操作成功', $url = '')
     {
-        return view('admin.test.test');
+        return response()->json([
+            'status'    => true,
+            'url'       => $url,
+            'message'   => $message
+        ]);
+    }
+
+    public function fail($message = '操作失败', $url = '')
+    {
+        return response()->json([
+            'status'    => false,
+            'url'       => $url,
+            'message'   => $message
+        ]);
     }
 }

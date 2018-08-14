@@ -6,5 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    //
+    protected $fillable = [
+        'name'
+    ];
+
+    public function scopeWithOrder($query,  $order)
+    {
+        switch ($order){
+            case 'count':
+                $query->useDesc();
+                break;
+            default:
+                $query->idDesc();
+        }
+        return $query;
+    }
+
+    public function scopeUseDesc($query)
+    {
+        return $query->orderBy('count', 'desc');
+    }
+
+    public function scopeIdDesc($query)
+    {
+        return $query->orderBy('id', 'desc');
+    }
 }

@@ -62,7 +62,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="#"><i class="fa fa-tag"></i>标签列表</a>
+                            <a class="J_menuItem" href="{{ url('/admin/tag') }}"><i class="fa fa-tag"></i>标签列表</a>
                         </li>
                     </ul>
                 </li>
@@ -80,9 +80,56 @@
 <script src="{{ asset('hAdmin/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- 自定义js -->
-<script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>
+<script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>@ti
+{{-- 全局JS使用 --}}
+<script>
+    $(function () {
+        // 新增页面按钮提交 post形式
+        $("#formSubmitAdd").click(function () {
+            var form = $("form");
+            $.ajax({
+                url : form.attr('action'),
+                type : 'post',
+                data : form.serialize(),
+                dataType : 'json',
+                success : ajaxSuccess,
+                error : ajaxError
+            });
+        });
+        // 修改页面按钮提交 PUT形式
+        $("#formSubmitEdit").click(function () {
+            var form = $("form");
+            $.ajax({
+                url : form.attr('action'),
+                type : 'post',
+                data : form.serialize(),
+                dataType : 'json',
+                success : ajaxSuccess,
+                error : ajaxError
+            });
+        });
+    });
+    // 请求成功回调函数
+    function ajaxSuccess(res) {
+        layer.msg(res.message)
+        if (res.status){
+            window.location.href = res.url;
+        }
+    }
 
+    function ajaxError(res) {
+        if (res.status !== 200){
+            layer.msg(getFirstError(res.responseJSON));
+        }
+    }
 
+    function getFirstError(data){
+        var arr = data.errors;
+        for (var i in arr){
+            return arr[i][0];
+        }
+    }
+</script>
 </body>
 
 </html>
