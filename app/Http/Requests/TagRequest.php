@@ -13,8 +13,14 @@ class TagRequest extends Request
     public function rules()
     {
         $tag = $this->route('tag');
-        return [
-            'name' => 'required|min:2|max:20|unique:tags,name,'.$tag->id,
-        ];
+        if (is_null($tag)){
+            return [
+                'name' => 'required|min:2|max:20|unique:tags',
+            ];
+        } else {
+            return [
+                'name' => 'required|min:2|max:20|unique:tags,name,'.$tag->id,
+            ];
+        }
     }
 }

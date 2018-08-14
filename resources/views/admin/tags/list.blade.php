@@ -90,13 +90,9 @@
                                                     <a href="{{ route('tag.edit', [$tag->id]) }}" type="button" class="btn btn-outline btn-default"  title="修改">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form action="{{ route('tag.destroy', [$tag->id]) }}" method="post">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('DELETE') }}
-                                                        <button type="submit" class="btn btn-default btn-xs pull-left delete" style="margin-left: 6px;">
-                                                            <i class="glyphicon glyphicon-trash"></i> 删除
-                                                        </button>
-                                                    </form>
+                                                    <a href="#" data-url="{{ route('tag.destroy', [$tag->id]) }}" data-name="{{ $tag->name }}" type="button" class="btn btn-outline btn-default delete"  title="删除">
+                                                        <i class="fa fa-trash-o fa-lg"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach

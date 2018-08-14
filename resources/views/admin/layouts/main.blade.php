@@ -84,12 +84,18 @@
 {{-- 全局JS使用 --}}
 <script>
     $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN':" {{ csrf_token() }}"
+            }
+        });
+
         // 新增页面按钮提交 post形式
         $("#formSubmitAdd").click(function () {
             var form = $("form");
             $.ajax({
                 url : form.attr('action'),
-                type : 'post',
+                type : 'POST',
                 data : form.serialize(),
                 dataType : 'json',
                 success : ajaxSuccess,
@@ -101,7 +107,7 @@
             var form = $("form");
             $.ajax({
                 url : form.attr('action'),
-                type : 'post',
+                type : 'PUT',
                 data : form.serialize(),
                 dataType : 'json',
                 success : ajaxSuccess,
@@ -109,9 +115,26 @@
             });
         });
     });
+
+    // 删除按钮点击提交 DELETE形式
+    $(".delete").click(function () {
+        var that = $(this);
+        layer.confirm("是否要删除  "+ that.data('name') + "?",{
+            btn:['确定', '取消']
+        }, function () {
+            $.ajax({
+                type : 'DELETE',
+                url : that.data('url'),
+                success : ajaxSuccess,
+                error : ajaxError
+            })
+        });
+    });
+
+
     // 请求成功回调函数
     function ajaxSuccess(res) {
-        layer.msg(res.message)
+        layer.msg(res.message);
         if (res.status){
             window.location.href = res.url;
         }
@@ -125,6 +148,7 @@
 
     function getFirstError(data){
         var arr = data.errors;
+        if (!arr)return '服务器错误，错误提示 :' + data.message;
         for (var i in arr){
             return arr[i][0];
         }

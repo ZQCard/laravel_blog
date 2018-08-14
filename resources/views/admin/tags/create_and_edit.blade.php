@@ -10,10 +10,13 @@
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal m-t" method="post" action="{{ getRouteAction()['route'] }}" novalidate="novalidate">
-                            {{ csrf_field() }}
                             @if(getRouteAction()['keyword'] == "编辑")
-                                <input name="_method" type="hidden" value="PUT">
-                                <input name="id" type="hidden" value="{{ $tag->id }}">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">ID：</label>
+                                    <div class="col-sm-3">
+                                        <input name="id" disabled="" value="{{ $tag->id }}" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标签名称：</label>
                                     <div class="col-sm-3">
@@ -27,8 +30,6 @@
                                     </div>
                                 </div>
                             @else
-                                <input name="_method" type="hidden" value="PUT">
-                                <input name="id" type="hidden" value="">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标签名称：</label>
                                     <div class="col-sm-3">

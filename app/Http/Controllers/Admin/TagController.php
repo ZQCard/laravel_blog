@@ -27,9 +27,8 @@ class TagController extends AdminController
         $tag->fill($request->all());
         if ($tag->save()){
             return $this->success('创建标签成功', route('tag.index'));
-        }else{
-            return $this->fail('数据库保存失败');
         }
+        return $this->fail('数据库保存失败');
     }
 
     // 编辑标签
@@ -42,16 +41,17 @@ class TagController extends AdminController
     public function update(TagRequest $request,Tag $tag)
     {
         if ($tag->update($request->all())){
-            return $this->success('标签成功', route('tag.index'));
-        }else{
-            return $this->fail('数据库保存失败');
+            return $this->success('修改标签成功', route('tag.index'));
         }
+        return $this->fail('数据库保存失败');
     }
 
     // 删除标签
     public function destroy(Tag $tag)
     {
-        $tag->delete();
-        return redirect()->route('tag.index')->with('success', '删除成功!');
+        if ($tag->delete()){
+            return $this->success('删除标签成功', route('tag.index'));
+        }
+        return $this->fail('数据删除失败');
     }
 }
