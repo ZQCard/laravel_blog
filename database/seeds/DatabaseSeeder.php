@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FriendLinksTableSeeder::class);
         // 生成文章
         $this->call(ArticleTableSeeder::class);
+        // 生成文章标签关联
+        $this->call(ArticleTagsTableSeeder::class);
     }
 }
