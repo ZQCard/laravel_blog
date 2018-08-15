@@ -41,25 +41,37 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-tags"></i>
+                    <i class="fa fa-bar-chart"></i>
                     <span class="nav-label">分类管理</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="{{ route('category.index') }}"><i class="fa fa-tag"></i>分类列表</a>
+                        <a class="J_menuItem" href="{{ route('category.index') }}"><i class="fa fa-bar-chart"></i>分类列表</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-tags"></i>
+                    <i class="fa fa-clipboard"></i>
                     <span class="nav-label">友情链接管理</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="{{ route('friend_link.index') }}"><i class="fa fa-tag"></i>友情链接列表</a>
+                        <a class="J_menuItem" href="{{ route('friend_link.index') }}"><i class="fa fa-clipboard"></i>友情链接列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label">文章管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('friend_link.index') }}"><i class="fa fa-book"></i>文章列表</a>
                     </li>
                 </ul>
             </li>

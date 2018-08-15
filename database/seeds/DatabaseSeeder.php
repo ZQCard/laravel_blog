@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTableSeeder::class);
         // 生成友情链接
         $this->call(FriendLinksTableSeeder::class);
+        // 生成文章
+        $this->call(ArticleTableSeeder::class);
     }
 }
