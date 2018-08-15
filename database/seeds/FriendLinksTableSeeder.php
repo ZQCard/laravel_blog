@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BlogrollTableSeeder extends Seeder
+class FriendLinksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -29,7 +29,7 @@ class BlogrollTableSeeder extends Seeder
             ]
         ];
         for ($i = 0; $i < count($data); $i++){
-            factory('App\Models\Blogroll',1)->create([
+            factory('App\Models\FriendLink',1)->create([
                 'name' => $data[$i]['name'],
                 'link' => $data[$i]['link'],
                 'is_show' => $data[$i]['is_show'],

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogrollsTable extends Migration
+class CreateFriendLinksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBlogrollsTable extends Migration
      */
     public function up()
     {
-        Schema::create('blogrolls', function (Blueprint $table) {
+        Schema::create('friend_links', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 20);
             $table->string('link',50);
@@ -29,6 +29,6 @@ class CreateBlogrollsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogrolls');
+        Schema::dropIfExists('friend_links');
     }
 }

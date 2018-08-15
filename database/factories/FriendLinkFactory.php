@@ -13,8 +13,8 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Blogroll::class, function (Faker $faker) {
+$factory->define(App\Models\FriendLink::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        
     ];
 });

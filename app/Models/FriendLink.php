@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Blogroll extends Model
+class FriendLink extends Model
 {
     //
 }
