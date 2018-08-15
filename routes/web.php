@@ -24,5 +24,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     $router->get('/', 'AdminController@home')->name('admin.index');
     $router->get('index', 'AdminController@home')->name('admin.index');
     Route::resource('tag', 'TagController');
-    Route::resource('category', 'TagController');
+    Route::resource('category', 'CategoryController');
 });

@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
          // 生成标签数据
         $this->call(TagsTableSeeder::class);
         // 生成分类标签
-        $this->call(CategoryTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }

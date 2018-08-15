@@ -75,8 +75,16 @@
         }
 
         function error(res) {
+
             if (res.status !== 200){
                 layer.msg(getFirstError(res));
+            } else {
+                layer.msg("登录成功", function () {
+                    layer.load(1, {
+                        shade: [0.1,'#fff'] //0.1透明度的白色背景
+                    });
+                    window.location.href = "{{ route('admin.index') }}";
+                });
             }
         }
 
