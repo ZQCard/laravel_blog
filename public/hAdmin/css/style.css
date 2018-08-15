@@ -1253,88 +1253,6 @@ button.dim:active:before {
     color: #8B91A0;
 }
 
-
-/* TOOGLE SWICH */
-
-.onoffswitch {
-    position: relative;
-    width: 64px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-
-.onoffswitch-checkbox {
-    display: none;
-}
-
-.onoffswitch-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid #23b7e5;
-    border-radius: 2px;
-}
-
-.onoffswitch-inner {
-    width: 200%;
-    margin-left: -100%;
-    -webkit-transition: margin 0.3s ease-in 0s;
-    transition: margin 0.3s ease-in 0s;
-}
-
-.onoffswitch-inner:before,
-.onoffswitch-inner:after {
-    float: left;
-    width: 50%;
-    height: 20px;
-    padding: 0;
-    line-height: 20px;
-    font-size: 12px;
-    color: white;
-    font-family: Trebuchet, Arial, sans-serif;
-    font-weight: bold;
-    box-sizing: border-box;
-}
-
-.onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: #23b7e5;
-    color: #FFFFFF;
-}
-
-.onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #FFFFFF;
-    color: #999999;
-    text-align: right;
-}
-
-.onoffswitch-switch {
-    width: 20px;
-    margin: 0px;
-    background: #FFFFFF;
-    border: 2px solid #23b7e5;
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 44px;
-    -webkit-transition: all 0.3s ease-in 0s;
-    transition: all 0.3s ease-in 0s;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
-}
-
-
 /* CHOSEN PLUGIN */
 
 .chosen-container-single .chosen-single {
@@ -2360,7 +2278,10 @@ table.dataTable thead .sorting:after {
 
 
 /* SWITCHES */
-
+.switch{
+    margin-top: 2%;
+    margin-left: 30%;
+}
 .onoffswitch {
     position: relative;
     width: 54px;
@@ -2406,7 +2327,7 @@ table.dataTable thead .sorting:after {
 
 .onoffswitch-inner:before {
     content: "ON";
-    padding-left: 7px;
+    padding-right: 7px;
     background-color: #23b7e5;
     color: #FFFFFF;
 }
@@ -7158,7 +7079,7 @@ body.rtls.top-navigation .footer.fixed {
     text-align: center;
 }
 
-.setings-item .switch {
+.setings-item {
     float: right;
 }
 

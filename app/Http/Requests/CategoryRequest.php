@@ -6,14 +6,14 @@ class CategoryRequest extends Request
 {
     public function rules()
     {
-        $category = $this->route('tag');
+        $category = $this->route('category');
         if (is_null($category)){
             return [
-                'name' => 'required|min:2|max:20|unique:tags',
+                'name' => 'required|min:2|max:20|unique:categories',
             ];
         } else {
             return [
-                'name' => 'required|min:2|max:20|unique:tags,name,'.$category->id,
+                'name' => 'required|min:2|max:20|unique:categories,name,'.$category->id,
             ];
         }
     }

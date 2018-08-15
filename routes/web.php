@@ -25,4 +25,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     $router->get('index', 'AdminController@home')->name('admin.index');
     Route::resource('tag', 'TagController');
     Route::resource('category', 'CategoryController');
+    Route::resource('friend_link', 'FriendLinkController');
+    Route::patch('friend_link', 'FriendLinkController@patch')->name('friend_link.patch');
 });

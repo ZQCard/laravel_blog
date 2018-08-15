@@ -25,63 +25,7 @@
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
-    <!--左侧导航开始-->
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="nav-close"><i class="fa fa-times-circle"></i>
-        </div>
-        <div class="sidebar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear">
-                                    <span class="block m-t-xs" style="font-size:20px;">
-                                        <i class="fa fa-area-chart"></i>
-                                        <strong class="font-bold">hAdmin</strong>
-                                    </span>
-                                </span>
-                        </a>
-                    </div>
-                    <div class="logo-element">hAdmin
-                    </div>
-                </li>
-                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                    <span class="ng-scope">分类</span>
-                </li>
-                <li>
-                    <a class="J_menuItem" href="{{ route('admin.index') }}">
-                        <i class="fa fa-home"></i>
-                        <span class="nav-label">主页</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tags"></i>
-                        <span class="nav-label">标签管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ route('tag.index') }}"><i class="fa fa-tag"></i>标签列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tags"></i>
-                        <span class="nav-label">分类管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ route('category.index') }}"><i class="fa fa-tag"></i>分类列表</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!--左侧导航结束-->
+    @include('admin.layouts.left')
     @yield('content')
 </div>
 
@@ -95,6 +39,7 @@
 <script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>@ti
 {{-- 全局JS使用 --}}
 <script>
+
     $(function () {
         $.ajaxSetup({
             headers: {
@@ -166,6 +111,7 @@
         }
     }
 </script>
+@yield('js')
 </body>
 
 </html>
