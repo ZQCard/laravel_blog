@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsTableSeeder::class);
         // 生成分类标签
         $this->call(CategoriesTableSeeder::class);
+        // 生成友情链接
+        $this->call(BlogrollTableSeeder::class);
     }
 }
