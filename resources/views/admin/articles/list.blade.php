@@ -139,7 +139,7 @@
 @endsection
 @section('js')
     <script>
-        $(".image-big-image").click(function (event) {
+        $(".image-big").click(function (event) {
             var that = $(this);
             if (that.css('position') === 'static') { // 已经缩放,需要缩小
                 $(this).css({'position': 'absolute', 'top': '50%', 'transform': 'scale(10)'});
@@ -148,7 +148,7 @@
         });
 
         $(document).click(function () {
-            $(".image-big-image").css({'position': '', 'top': '', 'transform': ''});
+            $(".image-big").css({'position': '', 'top': '', 'transform': ''});
         });
     </script>
 @endsection

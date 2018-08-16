@@ -29,3 +29,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     Route::patch('friend_link', 'FriendLinkController@patch')->name('friend_link.patch');
     Route::resource('article', 'ArticleController');
 });
+
+/*************************  公共路由  ****************************************/
+Route::group(['namespace' => 'Common', 'middleware' => 'web'], function($router){
+    $router->post('upload', 'UploaderController@upload')->name('upload');
+});
+

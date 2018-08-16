@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Traits\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    use JsonResponse;
     protected $ajaxReturnData = ['url' => '', 'message' => '操作成功'];
 
     public function __construct()
@@ -17,23 +19,5 @@ class AdminController extends Controller
     public function home()
     {
         return view('admin.index');
-    }
-
-    public function success($message = '操作成功', $url = '')
-    {
-        return response()->json([
-            'status'    => true,
-            'url'       => $url,
-            'message'   => $message
-        ]);
-    }
-
-    public function fail($message = '操作失败', $url = '')
-    {
-        return response()->json([
-            'status'    => false,
-            'url'       => $url,
-            'message'   => $message
-        ]);
     }
 }

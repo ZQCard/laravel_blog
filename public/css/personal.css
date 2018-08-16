@@ -3,3 +3,12 @@
     cursor: pointer;
     transition: all 1s;
 }
+
+.select-input{
+    height: 40px;
+}
+
+.form-input-img{
+    height: 70%;
+    width: 70%
+}

@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+ @extends('admin.layouts.main')
 @section('css')
     <link href="{{ asset('jqueryselect/css/component-chosen.css') }}" rel="stylesheet">
 @endsection
@@ -37,14 +37,16 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">封面图：</label>
                                     <div class="col-sm-3">
-                                        <input name="poster" value="" minlength="2" type="hidden" class="form-control" required="" aria-required="true">
+                                        <img src="{{ asset('img/upload.jpg') }}" alt="" class="form-input-img">
+                                        <input type="file" id="file" style="display: none" class="files" />
+                                        <input type="hidden" name="poster" id="nowPic" value="">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">分类：</label>
                                     <div class="col-sm-3">
-                                        <select class="form-control" name="category_id" required>
+                                        <select class="form-control select-input" name="category_id" required>
                                             <option value="" hidden disabled selected>请选择分类</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -72,6 +74,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">未存标签：</label>
                                     <div class="col-sm-3">
@@ -97,9 +100,48 @@
 @section('js')
     <script src="{{ asset('jqueryselect/js/chosen.jquery.js') }}"></script>
     <script type="text/javascript">
+        // 标签筛选
         $('.form-control-chosen').chosen({
             allow_single_deselect: true,
             width: '100%'
+        });
+
+        // 调用上传文件事件
+        $(".form-input-img").click(function () {
+            $("#file").click();
+        });
+
+        // ajax上传文件
+        $(document).ready(function() {
+            var csrf_token = "{{ csrf_token() }}";
+            $("#file").change(function () {
+                // 图片上传地址
+                var url = "{{ route("upload") }}";
+                var upload = function (f, csrf_token) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', url, true);
+                    var formData = new FormData();
+                    formData.append('file', f);
+                    formData.append('_token', csrf_token);
+                    formData.append('type', 'image');
+                    xhr.onreadystatechange = function (response) {
+                        if ((xhr.readyState == 4) && (xhr.status == 200) && (xhr.responseText != '')){
+                            layer.msg("上传成功");
+                            var data = JSON.parse(xhr.responseText).data;
+                            $(".form-input-img").attr('src', data['url']);
+                            $("#nowPic").val(data['url']);
+                        }else if((xhr.status != 200) && xhr.responseText){
+                            layer.msg("上传失败");
+                        }
+                    };
+                    xhr.send(formData);
+                }
+                if ($("#file")[0].files.length > 0) {
+                    upload($("#file")[0].files[0], csrf_token);
+                } else {
+                    console && console.log("form input error");
+                }
+            });
         });
     </script>
 @endsection
