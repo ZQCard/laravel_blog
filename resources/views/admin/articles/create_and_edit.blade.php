@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">封面图：</label>
                                     <div class="col-sm-3">
-                                        <input name="poster" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                        <input name="poster" value="" minlength="2" type="hidden" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
 
