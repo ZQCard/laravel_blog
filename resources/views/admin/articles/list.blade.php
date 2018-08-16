@@ -3,7 +3,7 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <ul class="nav navbar-top-friendLinks navbar-right">
+                <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" id="linkOrder" href="#">
                             <i class="fa fa-bell"></i> <span class="label label-primary"></span>
@@ -16,12 +16,12 @@
             <div class="col-sm-12">
                 <!-- Example Toolbar -->
                 <div class="example-wrap">
-                    <h4 class="example-title">友情链接管理</h4>
+                    <h4 class="example-title">文章管理</h4>
                     <div class="example">
 
                         <div class="bootstrap-table">
                             <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="btn-group hidden-xs" id="exampleToolbar" role="group">
-                                        <a type="button"  href="{{ route('friend_link.create') }}" class="btn btn-outline btn-default"  title="添加友情链接">
+                                        <a type="button"  href="{{ route('article.create') }}" class="btn btn-outline btn-default"  title="添加文章">
                                             <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
                                         </a>
                                         <button class="btn btn-default btn-outline" type="button" onclick="window.location.reload();" title="刷新">
@@ -43,16 +43,23 @@
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="name" tabindex="0">
-                                                <div class="th-inner ">友情链接名称</div>
+                                                <div class="th-inner ">文章标题</div>
                                                 <div class="fht-cell"></div>
                                             </th>
-
-                                            <th style="" data-field="name" tabindex="0">
-                                                <div class="th-inner ">链接地址</div>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">所属分类</div>
                                                 <div class="fht-cell"></div>
                                             </th>
-                                            <th style="" data-field="name" tabindex="0">
-                                                <div class="th-inner ">是否展示</div>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">封面图</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">浏览数</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">评论数量</div>
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th style="" data-field="name" tabindex="0">
@@ -72,40 +79,38 @@
                                         </thead>
 
                                         <tbody>
-                                        @if(count($friendLinks))
-                                            @foreach($friendLinks as $link)
+                                        @if(count($articles))
+                                            @foreach($articles as $article)
                                             <tr class="no-records-found">
                                                 <td>
-                                                    {{ $link->id }}
+                                                    {{ $article->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $link->name }}
+                                                    {{ $article->title }}
                                                 </td>
                                                 <td>
-                                                    {{ $link->link }}
+                                                    {{ $article->category->name }}
                                                 </td>
                                                 <td>
-                                                    <div class="switch">
-                                                        <div class="onoffswitch">
-                                                            <input type="checkbox" @if( $link->is_show == 1) checked="checked" @endif class="onoffswitch-checkbox statusChange" id="{{ $link->is_show }}-{{ $link->id }}">
-                                                            <label class="onoffswitch-label" for="{{ $link->is_show }}-{{ $link->id }}">
-                                                                <span class="onoffswitch-inner"></span>
-                                                                <span class="onoffswitch-switch"></span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                                    <img src="{{ $article->poster }}" class="show-image image-big" alt="{{ $article->title }}">
                                                 </td>
                                                 <td>
-                                                    {{ $link->created_at }}
+                                                    {{ $article->visit_count }}
                                                 </td>
                                                 <td>
-                                                    {{ $link->updated_at }}
+                                                    {{ $article->comment_count }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('friend_link.edit', [$link->id]) }}" type="button" class="btn btn-outline btn-default"  title="修改">
+                                                    {{ $article->created_at }}
+                                                </td>
+                                                <td>
+                                                    {{ $article->updated_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('article.edit', [$article->id]) }}" type="button" class="btn btn-outline btn-default"  title="修改">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="#" data-url="{{ route('friend_link.destroy', [$link->id]) }}" data-name="{{ $link->name }}" type="button" class="btn btn-outline btn-default delete"  title="删除">
+                                                    <a href="#" data-url="{{ route('article.destroy', [$article->id]) }}" data-name="{{ $article->name }}" type="button" class="btn btn-outline btn-default delete"  title="删除">
                                                         <i class="fa fa-trash-o fa-lg"></i>
                                                     </a>
                                                 </td>
@@ -114,14 +119,14 @@
                                         @endif
                                         </tbody>
                                     </table>
-                                    @if(count($friendLinks) == 0)
+                                    @if(count($articles) == 0)
                                         @include('admin.layouts.noData')
                                     @endif
                                 </div>
                             </div>
                         </div>
                         <div style="float: right">
-                            {!! $friendLinks->render() !!}
+                            {!! $articles->render() !!}
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -130,26 +135,20 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
     <script>
-        $(".statusChange").change(function () {
+        $(".image-big-image").click(function (event) {
             var that = $(this);
-            var info = that.attr('id').split('-');
-            var is_show = (info[0] == 1) ? 0 : 1;
-            var id = info[1];
-            $.ajax({
-                type : "PATCH",
-                url  : "{{route('friend_link.patch')}}",
-                data : {id:id, is_show:is_show},
-                success : function (res) {
-                    // 成功后更改当前状态
-                    that.attr('id',is_show + '-' + id);
-                    var label = that.next();
-                    label.attr('for',is_show + '-' + id);
-                    layer.msg(res.msg,{time:1000});
-                }
-            });
+            if (that.css('position') === 'static') { // 已经缩放,需要缩小
+                $(this).css({'position': 'absolute', 'top': '50%', 'transform': 'scale(10)'});
+                event.stopPropagation();
+            }
+        });
+
+        $(document).click(function () {
+            $(".image-big-image").css({'position': '', 'top': '', 'transform': ''});
         });
     </script>
 @endsection

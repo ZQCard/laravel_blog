@@ -17,7 +17,6 @@ class CreateArticleTagsTable extends Migration
             $table->increments('id');
             $table->integer('article_id')->index();
             $table->integer('tag_id')->index();
-            $table->timestamps();
         });
     }
 

@@ -21,7 +21,7 @@
 
                         <div class="bootstrap-table">
                             <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="btn-group hidden-xs" id="exampleToolbar" role="group">
-                                        <a type="button"  href="{{ route('tag.create') }}" class="btn btn-outline btn-default"  title="添加管理员">
+                                        <a type="button"  href="{{ route('tag.create') }}" class="btn btn-outline btn-default"  title="添加标签">
                                             <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
                                         </a>
                                         <button class="btn btn-default btn-outline" type="button" onclick="window.location.reload();" title="刷新">

@@ -27,5 +27,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     Route::resource('category', 'CategoryController');
     Route::resource('friend_link', 'FriendLinkController');
     Route::patch('friend_link', 'FriendLinkController@patch')->name('friend_link.patch');
-    Route::patch('article', 'ArticleController@patch');
+    Route::resource('article', 'ArticleController');
 });

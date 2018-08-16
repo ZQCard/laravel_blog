@@ -71,7 +71,7 @@
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="{{ route('friend_link.index') }}"><i class="fa fa-book"></i>文章列表</a>
+                        <a class="J_menuItem" href="{{ route('article.index') }}"><i class="fa fa-book"></i>文章列表</a>
                     </li>
                 </ul>
             </li>

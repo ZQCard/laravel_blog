@@ -21,6 +21,8 @@
     <link href="{{ asset('hAdmin/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('hAdmin/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('layer/theme/default/layer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/personal.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -36,7 +38,8 @@
 <script src="{{ asset('hAdmin/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- 自定义js -->
-<script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>@ti
+<script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>
+<script src="{{ asset('js/personal.js') }}"></script>
 {{-- 全局JS使用 --}}
 <script>
 

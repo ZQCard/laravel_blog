@@ -1,0 +1,5 @@
+.show-image{
+    height: 30px;
+    cursor: pointer;
+    transition: all 1s;
+}
