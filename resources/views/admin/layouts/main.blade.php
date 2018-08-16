@@ -39,7 +39,7 @@
 <script src="{{ asset('hAdmin/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- 自定义js -->
 <script src="{{ asset('hAdmin/js/hAdmin.js?v=4.1.0') }}"></script>
-<script src="{{ asset('js/personal.js') }}"></script>
+
 {{-- 全局JS使用 --}}
 <script>
 

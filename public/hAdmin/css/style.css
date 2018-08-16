@@ -1277,7 +1277,7 @@ button.dim:active:before {
     border: 1px solid #ededed;
     border-radius: 2px;
     box-shadow: none;
-    color: #333333;
+    color: deepskyblue;
     cursor: default;
     line-height: 13px;
     margin: 3px 0 3px 5px;
