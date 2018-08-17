@@ -13,7 +13,10 @@ class ArticleRequest extends Request
     public function rules()
     {
         return [
-            //
+            'title'         => 'required|min:2|max:50',
+            'category_id'   => 'required',
+            'content'       => 'required',
+            'poster'        => 'required|url',
         ];
     }
 }

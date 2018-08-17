@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标签：</label>
                                     <div class="col-sm-3">
-                                        <select id="multiple" class="form-control  form-control-chosen" name="tags[]" data-placeholder="请选择标签" required multiple>
+                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签" required multiple>
                                             <option></option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>

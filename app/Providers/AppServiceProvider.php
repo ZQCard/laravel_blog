@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 加入文章观察器
+        \App\Models\Article::observe(\App\Observers\ArticleObserver::class);
     }
 
     /**

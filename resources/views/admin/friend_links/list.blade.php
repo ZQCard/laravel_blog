@@ -143,11 +143,18 @@
                 url  : "{{route('friend_link.patch')}}",
                 data : {id:id, is_show:is_show},
                 success : function (res) {
+                    if (res.status === false){
+                        layer.msg(res.message,{time:1000});
+                        return;
+                    }
                     // 成功后更改当前状态
                     that.attr('id',is_show + '-' + id);
                     var label = that.next();
                     label.attr('for',is_show + '-' + id);
-                    layer.msg(res.msg,{time:1000});
+                    layer.msg(res.message,{time:1000});
+                },
+                error:function (res) {
+                    console.log(res.message);
                 }
             });
         });
