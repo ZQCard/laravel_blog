@@ -33,7 +33,7 @@ class DocumentUploadHandler
         if (!isset($this->allowed_extension[$type]))return false;
         if (!in_array($extension, $this->allowed_extension[$type]))return false;
         // 存储文件夹路径
-        $folder_name = 'uploads/' . $type . '/' .$end . '/' . date('y-m-d', time());
+        $folder_name = 'storage/uploads/' . $type . '/' .$end . '/' . date('y-m-d', time());
         $upload_path = public_path() . '/' . $folder_name;
         // 生成文件名
         $filename = $prefix . '_' .time() . '_' . str_random(10) . '.' . $extension;
