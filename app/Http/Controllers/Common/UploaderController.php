@@ -13,12 +13,17 @@ class UploaderController extends Controller
 
     public function upload(Request $request,DocumentUploadHandler $uploadHandler)
     {
+        // 获取文件对象数组
         $file = $request->file();
         if ($request->hasFile('file')){
+            // 获取当前文件对象
             $uploadedFile = $file['file'];
             $result = $uploadHandler->save($uploadedFile, $request->post('type'), 'admin',\Auth::id());
-            return $this->success('上传成功', '', $result);
+            if ($result['status']){
+                return $this->success($result['message'], '', $result);
+            }
+            return $this->fail($result['message']);
         }
-        return $this->fail('上传失败');
+        return $this->fail('非法文件');
     }
 }

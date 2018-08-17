@@ -15,7 +15,7 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username', 20); // 字段长度为20 默认NOT NULL
+            $table->string('username', 20)->unique(); // 字段长度为20 默认NOT NULL
             $table->string('email', 50); //字段长度为50
             $table->string('password');
             $table->rememberToken();
