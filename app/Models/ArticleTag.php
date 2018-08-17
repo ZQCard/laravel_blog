@@ -16,17 +16,19 @@ class ArticleTag extends Model
     public function articleRelateTag($tags_data, $article_id)
     {
         $tags_ids = $this->processTag($tags_data);
-        $old_realtion = ArticleTag::where('article_id', $article_id)->whereIn('tag_id', $tags_ids)->pluck('tag_id')->toArray();
-        $new_relation = array_diff($tags_ids, $old_realtion);
+        $old_relation = ArticleTag::where('article_id', $article_id)->whereIn('tag_id', $tags_ids)->pluck('tag_id')->toArray();
+        $new_relation = array_diff($tags_ids, $old_relation);
         $insert_data = [];
         foreach ($new_relation as $tag_id){
             $insert_data[] = ['article_id' => $article_id, 'tag_id' => $tag_id];
         }
         DB::table('article_tags')->insert($insert_data);
     }
-    
+
     /**
      * 取到新关联的标签
+     * @param $tags_data
+     * @return array
      */
     private function processTag($tags_data){
         // 标签id集合
