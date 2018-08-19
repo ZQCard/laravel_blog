@@ -7,11 +7,13 @@ use App\Models\Article;
 use App\Models\ArticleTag;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Http\Request;
+
 class ArticleController extends AdminController
 {
-    public function index()
+    public function index(Request $request, Article $article)
     {
-        $articles = Article::select(['id', 'category_id', 'poster', 'title', 'visit_count', 'comment_count', 'created_at', 'updated_at'])->paginate(10);
+        $articles = $article->withOrder($request->field, $request->order)->paginate(10);
         return view('admin.articles.list', compact('articles'));
     }
 

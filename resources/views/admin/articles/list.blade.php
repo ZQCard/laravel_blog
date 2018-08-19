@@ -27,6 +27,25 @@
                                         <button class="btn btn-default btn-outline" type="button" onclick="window.location.reload();" title="刷新">
                                             <i class="glyphicon glyphicon-repeat"></i>
                                         </button>
+                                        <a type="button"  href="{{ route('article.index', ['field' => 'id']) }}" class="btn btn-outline btn-default"  title="按id排序">
+                                            按id排序
+                                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a type="button"  href="{{ route('article.index', ['field' => 'visit_count']) }}" class="btn btn-outline btn-default"  title="按浏览量排序">
+                                            按浏览量排序
+                                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a type="button"  href="{{ route('article.index', ['field' => 'comment_count']) }}" class="btn btn-outline btn-default"  title="按评论量排序">
+                                            按评论量排序
+                                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                        </a>
+
+                                        <a type="button"  href="{{ route('article.index', ['field' => 'score']) }}" class="btn btn-outline btn-default"  title="按评分量排序">
+                                            按评分量排序
+                                            <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +58,21 @@
                                         <thead>
                                         <tr>
                                             <th data-field="name" tabindex="0">
-                                                <div class="th-inner ">序号</div>
+                                                <div class="th-inner ">
+                                                    <i class="field-order">
+                                                        @if(request('field') == 'id')
+                                                            @if(request('order') == 'asc')
+                                                                <img class="order" src="{{ asset('img/up.png') }}" alt="">
+                                                            @elseif(request('order') != 'asc')
+                                                                <img class="order" src="{{ asset('img/down.png') }}" alt="">
+                                                            @endif
+                                                        @endif
+                                                        @if((request('field')) == null)
+                                                            <img class="order" src="{{ asset('img/down.png') }}" alt="">
+                                                        @endif
+                                                    </i>
+                                                    序号
+                                                </div>
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="name" tabindex="0">
@@ -55,11 +88,48 @@
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="name" tabindex="0">
-                                                <div class="th-inner ">浏览数</div>
+                                                <div class="th-inner ">
+                                                    <i class="field-order">
+                                                        @if(request('field') == 'visit_count')
+                                                            @if(request('order') == 'asc')
+                                                                <img class="order" src="{{ asset('img/up.png') }}" alt="">
+                                                            @elseif(request('order') != 'asc')
+                                                                <img class="order" src="{{ asset('img/down.png') }}" alt="">
+                                                            @endif
+                                                        @endif
+                                                    </i>
+                                                    浏览数
+                                                </div>
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th data-field="name" tabindex="0">
-                                                <div class="th-inner ">评论数量</div>
+                                                <div class="th-inner ">
+                                                    <i class="field-order">
+                                                        @if(request('field') == 'comment_count')
+                                                            @if(request('order') == 'asc')
+                                                                <img class="order" src="{{ asset('img/up.png') }}" alt="">
+                                                            @elseif(request('order') != 'asc')
+                                                                <img class="order" src="{{ asset('img/down.png') }}" alt="">
+                                                            @endif
+                                                        @endif
+                                                    </i>
+                                                    评论数量
+                                                </div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">
+                                                    <i class="field-order">
+                                                        @if(request('field') == 'score')
+                                                            @if(request('order') == 'asc')
+                                                                <img class="order" src="{{ asset('img/up.png') }}" alt="">
+                                                            @elseif(request('order') != 'asc')
+                                                                <img class="order" src="{{ asset('img/down.png') }}" alt="">
+                                                            @endif
+                                                        @endif
+                                                    </i>
+                                                    评分
+                                                </div>
                                                 <div class="fht-cell"></div>
                                             </th>
                                             <th style="" data-field="name" tabindex="0">
@@ -101,6 +171,9 @@
                                                     {{ $article->comment_count }}
                                                 </td>
                                                 <td>
+                                                    {{ $article->score }}
+                                                </td>
+                                                <td>
                                                     {{ $article->created_at }}
                                                 </td>
                                                 <td>
@@ -139,6 +212,33 @@
 @endsection
 @section('js')
     <script>
+        // 根据字段进行排序
+        $(".field-order").click(function () {
+            var params = GetRequest();
+            if (params['order'] === 'asc'){
+                params['order'] = 'desc';
+            }else {
+                params['order'] = 'asc';
+            }
+            if (!params['field']){
+                params['field'] = 'id';
+            }
+
+            if (!params['order']){
+                params['order'] = 'desc';
+            }
+
+            if (!params['page']){
+                params['page'] = 1;
+            }
+            var url = "{{ route('article.index') }}";
+            url += '?';
+            for (var i in params){
+                url += i + '=' + params[i]+ '&' ;
+            }
+            window.location.href = url;
+        });
+
         $(".image-big").click(function (event) {
             var that = $(this);
             if (that.css('position') === 'static') { // 已经缩放,需要缩小

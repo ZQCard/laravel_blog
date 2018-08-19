@@ -12,3 +12,11 @@
     height: 70%;
     width: 70%
 }
+
+.order{
+    height: 20px;
+    width: 20px;
+}
+.order:hover{
+    cursor: pointer;
+}

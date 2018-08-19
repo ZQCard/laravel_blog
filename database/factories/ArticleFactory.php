@@ -27,6 +27,7 @@ $factory->define(App\Models\Article::class, function (Faker $faker) {
         'content' => $faker->text(),
         'visit_count' => $faker->randomNumber(),
         'comment_count' => $faker->randomNumber(),
+        'score' => $faker->randomNumber(),
         'excerpt' => $sentence,
         'created_at' => $created_at,
         'updated_at' => $updated_at,
