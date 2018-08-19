@@ -24,11 +24,8 @@ class Article extends Model
     public function scopeWithOrder($query, $field, $order)
     {
         // 非法参数,按照默认值排序
-        if ((!in_array($field, $this->fieldOrder)) || !in_array($order, $this->orderType)){
-            $field = $this->primaryKey;
-            $order = 'desc';
-        }
-
+        (!in_array($field, $this->fieldOrder)) && $field = $this->primaryKey;
+        (!in_array($order, $this->orderType)) && $order = 'desc';
         return $query->with('category')->select($this->select)->orderBy($field, $order);
     }
 

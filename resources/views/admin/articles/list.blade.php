@@ -33,17 +33,17 @@
                                         </a>
 
                                         <a type="button"  href="{{ route('article.index', ['field' => 'visit_count']) }}" class="btn btn-outline btn-default"  title="按浏览量排序">
-                                            按浏览量排序
+                                            按浏览数排序
                                             <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
                                         </a>
 
                                         <a type="button"  href="{{ route('article.index', ['field' => 'comment_count']) }}" class="btn btn-outline btn-default"  title="按评论量排序">
-                                            按评论量排序
+                                            按评论数排序
                                             <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
                                         </a>
 
                                         <a type="button"  href="{{ route('article.index', ['field' => 'score']) }}" class="btn btn-outline btn-default"  title="按评分量排序">
-                                            按评分量排序
+                                            按评分排序
                                             <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
                                         </a>
                                     </div>
