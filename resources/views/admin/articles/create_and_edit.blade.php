@@ -1,6 +1,7 @@
- @extends('admin.layouts.main')
+@extends('admin.layouts.main')
 @section('css')
     <link href="{{ asset('jqueryselect/css/component-chosen.css') }}" rel="stylesheet">
+    <link href="{{ asset('editor/css/simditor.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <div id="page-wrapper" class="gray-bg dashbard-1">
@@ -58,8 +59,8 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">内容：</label>
-                                    <div class="col-sm-3">
-                                        <input name="content" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    <div class="col-sm-9">
+                                        <textarea name="content" class="form-control hide" id="editor" rows="3" placeholder="请填入至少三个字符的内容。" required></textarea>
                                     </div>
                                 </div>
 
@@ -95,10 +96,17 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('js')
+    {{-- 选择框 --}}
     <script src="{{ asset('jqueryselect/js/chosen.jquery.js') }}"></script>
+    {{-- simditor --}}
+    <script type="text/javascript"  src="{{ asset('editor/js/module.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('editor/js/hotkeys.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('editor/js/uploader.min.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('editor/js/simditor.min.js') }}"></script>
     <script type="text/javascript">
         // 标签筛选
         $('.form-control-chosen').chosen({
@@ -135,11 +143,32 @@
                         }
                     };
                     xhr.send(formData);
-                }
+                };
                 if ($("#file")[0].files.length > 0) {
                     upload($("#file")[0].files[0], csrf_token);
                 } else {
                     console && console.log("form input error");
+                }
+            });
+        });
+
+        // simditor编辑器展示
+        $(document).ready(function () {
+            var editor = new Simditor({
+                textarea: $("#editor"),
+                upload: {
+                    url: '{{ route('upload') }}',
+                    params: { _token: '{{ csrf_token() }}', type : 'image' , editor: true},
+                    fileKey: 'file',
+                    connectionCount: 3,
+                    leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+                },
+                pasteImage: true,
+                success:function (data) {
+                    alert(data);
+                },
+                error:function (data) {
+                    alert(data)
                 }
             });
         });

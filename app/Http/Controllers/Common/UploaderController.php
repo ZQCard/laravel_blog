@@ -20,6 +20,10 @@ class UploaderController extends Controller
             $uploadedFile = $file['file'];
             $result = $uploadHandler->save($uploadedFile, $request->post('type'), 'admin',\Auth::id());
             if ($result['status']){
+                // 如果是编辑器上传
+                if ($request->post('editor')){
+                    return response()->json(['file_path' => $result['url']]);
+                }
                 return $this->success($result['message'], '', $result);
             }
             return $this->fail($result['message']);
