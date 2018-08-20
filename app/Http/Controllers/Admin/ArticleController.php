@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
-use App\Models\ArticleTag;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -13,7 +12,7 @@ class ArticleController extends AdminController
 {
     public function index(Request $request, Article $article)
     {
-        $articles = $article->withOrder($request->field, $request->order)->paginate(10);
+        $articles = $article->withTrashed()->withOrder($request->field, $request->order)->paginate(10);
         return view('admin.articles.list', compact('articles'));
     }
 
@@ -37,6 +36,23 @@ class ArticleController extends AdminController
         // 保存文章
         if ($article->save()){
             return $this->success('创建文章成功', route('article.index'));
+        }
+        return $this->fail('数据库保存失败');
+    }
+
+    public function destroy(Article $article)
+    {
+        $article->delete();
+        if ($article->trashed()){
+            return $this->success('删除文章成功', route('article.index'));
+        }
+        return $this->fail('数据库保存失败');
+    }
+
+    public function restore(Request $request)
+    {
+        if (Article::withTrashed()->where('id', $request->get('id'))->restore()){
+            return $this->success('恢复文章成功', route('article.index'));
         }
         return $this->fail('数据库保存失败');
     }

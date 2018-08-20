@@ -183,9 +183,15 @@
                                                     <a href="{{ route('article.edit', [$article->id]) }}" type="button" class="btn btn-outline btn-default"  title="修改">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="#" data-url="{{ route('article.destroy', [$article->id]) }}" data-name="{{ $article->name }}" type="button" class="btn btn-outline btn-default delete"  title="删除">
-                                                        <i class="fa fa-trash-o fa-lg"></i>
-                                                    </a>
+                                                    @if(is_null($article->deleted_at))
+                                                        <a href="#" data-url="{{ route('article.destroy', ['id' => $article->id]) }}" data-name="{{ $article->name }}" type="button" class="btn btn-outline btn-default delete"  title="删除">
+                                                            <i class="fa fa-trash-o fa-lg"></i>
+                                                        </a>
+                                                        @else
+                                                        <a href="#" data-url="{{ route('article.restore', ['id' => $article->id]) }}" data-name="{{ $article->name }}" type="button" class="btn btn-outline btn-default restore"  title="恢复">
+                                                            <i class="glyphicon glyphicon-ok"></i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -238,7 +244,7 @@
             }
             window.location.href = url;
         });
-
+         /* 图片放大缩小 */
         $(".image-big").click(function (event) {
             var that = $(this);
             if (that.css('position') === 'static') { // 已经缩放,需要缩小
@@ -249,6 +255,16 @@
 
         $(document).click(function () {
             $(".image-big").css({'position': '', 'top': '', 'transform': ''});
+        });
+        /*  恢复已经删除的文章 */
+        $(".restore").click(function () {
+            var that = $(this);
+            $.ajax({
+                type : 'POST',
+                url : that.data('url'),
+                success : ajaxSuccess,
+                error : ajaxError
+            })
         });
     </script>
 @endsection

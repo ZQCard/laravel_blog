@@ -24,8 +24,10 @@ class CreateArticlesTable extends Migration
             $table->integer('comment_count')->default(0);
             $table->integer('score')->default(0);
             $table->text('content');
+            $table->softDeletes();
             $table->timestamps();
         });
+
     }
 
     /**

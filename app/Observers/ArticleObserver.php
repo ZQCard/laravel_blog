@@ -26,4 +26,6 @@ class ArticleObserver
     {
         (new ArticleTag)->articleRelateTag(session('article.tags'), $article->id);
     }
+
+
 }

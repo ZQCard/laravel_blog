@@ -3,12 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['delete_at'];
+
+    const IS_DELETE = 1;
+    const NOT_DELETE = 0;
+
     protected $fillable = ['category_id', 'title', 'content', 'poster'];
 
-    private $select = ['id', 'category_id', 'score', 'poster', 'title', 'visit_count', 'comment_count', 'created_at', 'updated_at'];
+    private $select = ['id', 'category_id', 'score', 'poster', 'title', 'visit_count', 'comment_count', 'created_at', 'updated_at', 'deleted_at'];
 
     private $fieldOrder = ['id', 'visit_count', 'comment_count', 'score'];
 
