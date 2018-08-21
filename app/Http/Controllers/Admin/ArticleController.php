@@ -56,4 +56,11 @@ class ArticleController extends AdminController
         }
         return $this->fail('数据库保存失败');
     }
+
+    public function edit(Request $request, Article $article)
+    {
+        $categories = Category::all(['id', 'name']);
+        $tags = Tag::all(['id', 'name']);
+        dd($article);
+    }
 }
