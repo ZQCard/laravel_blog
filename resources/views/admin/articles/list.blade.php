@@ -180,6 +180,9 @@
                                                     {{ $article->updated_at }}
                                                 </td>
                                                 <td>
+                                                    <a href="{{ route('article.show', [$article->id]) }}" type="button" class="btn btn-outline btn-default"  title="查看">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                    </a>
                                                     <a href="{{ route('article.edit', [$article->id]) }}" type="button" class="btn btn-outline btn-default"  title="修改">
                                                         <i class="fa fa-edit"></i>
                                                     </a>

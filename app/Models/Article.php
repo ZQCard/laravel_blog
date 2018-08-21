@@ -36,4 +36,22 @@ class Article extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    /**
+     * 文章与标签表与中间表三张表关联
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function Tag()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'article_tags');
+    }
+
+    /**
+     * 获取标签id集合
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ArticleTag()
+    {
+        return $this->hasMany('App\Models\ArticleTag')->select(['tag_id']);
+    }
 }
