@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('excerpt');
             $table->integer('visit_count')->default(0);
             $table->integer('comment_count')->default(0);
+            $table->integer('praise_count')->default(0);
             $table->integer('score')->default(0);
             $table->text('content');
             $table->timestamps();
