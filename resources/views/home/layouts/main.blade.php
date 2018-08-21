@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>首页_杨青个人博客 - 一个站在web前端设计之路的女技术员个人博客网站</title>
+    <title>@yield('title', '首页') - {{ config("personal.app_name") }}</title>
     <meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
     <meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +17,16 @@
 <header class="header-navigation" id="header">
     <nav>
         <div class="logo">
-            <a href="/">杨青个人博客</a>
+            <a href="{{ config("app.url") }}">{{ config("personal.app_name") }}</a>
         </div>
         <h2 id="mnavh">
             <span class="navicon"></span>
         </h2>
         <ul id="starlist">
+            <li><a href="{{ config('app.url') }}">首页</a></li>
             @foreach($categories as $category)
                 <li>
-                    <a href="index.html">{{ $category->name }}</a>
+                    <a href="{{ route("category",['id' => $category->id]) }}">{{ $category->name }}</a>
                 </li>
             @endforeach
         </ul>

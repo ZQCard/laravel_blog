@@ -14,7 +14,12 @@
 /************************ 前台路由组 *****************************/
 Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     $router->get('/', 'IndexController@index')->name('home');
-    $router->get('/article/{id}', 'ArticleController@show')->name('article')->where('id','[\d+]');
+    // 文章详情
+    $router->get('/article/{id}', 'ArticleController@show')->name('article');
+    // 分类下的文章列表
+    $router->get('/category/{id}', 'CategoryController@index')->name('category');
+    // 标签下的文章列表
+    $router->get('/tag/{id}', 'TagController@index')->name('tag');
 });
 
 /************************ 后台路由组 *****************************/

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 class ArticleTag extends Model
 {
 
+    public function Article()
+    {
+        return $this->hasOne('App\Models\Article', 'id', 'article_id')->select(['id', 'poster', 'title']);
+    }
+
     /**
      * 建立标签与文章的关联
      * @param $tags_data

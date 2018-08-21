@@ -7,5 +7,6 @@ return [
     | 配置前台页面关键字
     |
     */
-    'keywords' => 'Laravel博客,周起,卡牌'
+    'keywords' => 'Laravel博客,周起,卡牌',
+    'app_name' => '卡牌个人博客',
 ];

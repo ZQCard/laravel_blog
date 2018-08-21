@@ -19,7 +19,7 @@
         <h2>标签云</h2>
         <ul>
             @foreach($tags as $tag)
-                <a href="/">{{ $tag->name }}({{ $tag->count }})</a>
+                <a href="{{ route('tag', ['id' => $tag->id]) }}">{{ $tag->name }}({{ $tag->count }})</a>
             @endforeach
         </ul>
     </div>
@@ -28,7 +28,7 @@
         <ul>
             @foreach($article_recommend as $recommend)
                 <li>
-                    <a href="/">{{ $recommend->title }}</a>
+                    <a href="{{ route('article', ['article' => $recommend->id]) }}">{{ $recommend->title }}</a>
                 </li>
             @endforeach
         </ul>
