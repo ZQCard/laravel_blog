@@ -18,13 +18,62 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">ID：</label>
                                     <div class="col-sm-3">
-                                        <input name="id" disabled="" value="{{ $category->id }}" type="text" class="form-control" required="" aria-required="true">
+                                        <input name="id" value="{{ $article->id }}" type="text" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">文章名称：</label>
+                                    <label class="col-sm-3 control-label">标题：</label>
                                     <div class="col-sm-3">
-                                        <input name="name" value="{{ $category->name }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                        <input name="title" value="{{ $article->title }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">封面图：</label>
+                                    <div class="col-sm-3">
+                                        <img src="{{ $article->poster }}" alt="" class="form-input-img">
+                                        <input type="file" id="file" style="display: none" class="files" />
+                                        <input type="hidden" name="poster" value="{{ $article->poster }}" id="nowPic">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">分类：</label>
+                                    <div class="col-sm-3">
+                                        <select class="form-control select-input" name="category_id" required>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" @if($category->id == $article->category_id)selected @endif>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">内容：</label>
+                                    <div class="col-sm-9">
+                                        <textarea name="content" class="form-control hide" id="editor" rows="3" placeholder="请填入至少三个字符的内容。" required>
+                                            {{ $article->content }}
+                                        </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">标签：</label>
+                                    <div class="col-sm-3">
+                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签" required multiple>
+                                            <option></option>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}" @if(in_array($tag->id, $tag_has_ids)) selected @endif>{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">未存标签：</label>
+                                    <div class="col-sm-3">
+                                        <input name="other_tags" value="" minlength="2" type="text" class="form-control" required="" data-placeholder="添加未存标签,以逗号分隔" aria-required="true">
+
                                     </div>
                                 </div>
                             @else
@@ -54,7 +103,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                 </div>
 
                                 <div class="form-group">
@@ -75,7 +123,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">未存标签：</label>
                                     <div class="col-sm-3">

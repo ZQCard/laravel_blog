@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers\Home;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\Article;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     public function index()
     {
-        return view('home.index');
+        $articles = Article::orderBy('created_at','desc')->select(['id', 'title', 'poster', 'excerpt'])->paginate(10);
+        return view('home.index',[
+            'articles' => $articles,
+            'tags' => $this->tags,
+            'categories' => $this->categories,
+            'friend_link' => $this->friend_link,
+            'article_recommend' => $this->article_recommend,
+        ]);
     }
 }

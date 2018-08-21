@@ -31,4 +31,9 @@ class Tag extends Model
     {
         return $query->orderBy('id', 'desc');
     }
+
+    public function Article()
+    {
+        return $this->belongsToMany('App\Models\Article', 'article_tags');
+    }
 }
