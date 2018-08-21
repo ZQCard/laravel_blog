@@ -14,6 +14,7 @@
 /************************ 前台路由组 *****************************/
 Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     $router->get('/', 'IndexController@index')->name('home');
+    $router->get('/article/{id}', 'ArticleController@show')->name('article')->where('id','[\d+]');
 });
 
 /************************ 后台路由组 *****************************/
