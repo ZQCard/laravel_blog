@@ -4,12 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Article extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['delete_at'];
+    protected $table = 'articles';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
     protected $fillable = ['category_id', 'title', 'content', 'poster'];
 
@@ -18,6 +25,7 @@ class Article extends Model
     private $fieldOrder = ['id', 'visit_count', 'comment_count', 'score'];
 
     private $orderType = ['desc', 'asc'];
+
 
     /**
      * 根据条件排序
@@ -48,7 +56,7 @@ class Article extends Model
      */
     public function Tag()
     {
-        return $this->belongsToMany('App\Models\Tag', 'article_tags');
+        return $this->belongsToMany('App\Models\Tag', 'article_tags')->select(['tag_id', 'name']);
     }
 
     /**
@@ -58,5 +66,24 @@ class Article extends Model
     public function ArticleTag()
     {
         return $this->hasMany('App\Models\ArticleTag')->select(['tag_id']);
+    }
+
+    /**
+     * 根据主键增加统计数据
+     * @param $primaryKey
+     * @param $column
+     * @param int $amount
+     */
+    public function incrementAmount($primaryKey, $column, $amount = 1)
+    {
+        DB::table($this->table)->where($this->primaryKey, $primaryKey)->increment($column, $amount);
+    }
+
+    public function getNear($id)
+    {
+        $article_near = [];
+        $article_near['previous'] = self::where('id', '<', $id)->first();
+        $article_near['next'] = self::where('id', '>', $id)->first();
+        return $article_near;
     }
 }

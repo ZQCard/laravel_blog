@@ -1,4 +1,4 @@
-@charset "gb2312";
+@charset "UTF-8";
 .infosbox { overflow: hidden; background: rgba(255,255,255,0.8); margin-bottom: 20px }
 .newsview { padding: 0 30px }
 .news_con a { color: #0e6dad }

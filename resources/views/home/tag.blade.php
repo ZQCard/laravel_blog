@@ -2,7 +2,11 @@
 @section('title',$title)
 @section('content')
     <main class="r_box">
-        {{ $title }} 标签下的文章:
+        <li>
+            <h3>
+                {{ $title }}   标签下的文章:
+            </h3>
+        </li>
         @foreach($article_tags as $article_tag)
             <li>
                 <i>

@@ -21,6 +21,7 @@ $factory->define(App\Models\Article::class, function (Faker $faker) {
     ];
 
     return [
+        'author' => "卡牌",
         'poster' => $faker->randomElement($avatars),
         'title' => $sentence,
         'keywords' => $faker->company,
