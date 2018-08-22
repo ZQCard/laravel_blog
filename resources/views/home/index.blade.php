@@ -2,11 +2,13 @@
 @section('title',$title)
 @section('content')
     <main class="r_box">
+        @if($title != '首页')
         <li>
             <h3>
                 @yield('info', '')
             </h3>
         </li>
+        @endif
         @foreach($articles as $article)
             <li>
                 <i>
