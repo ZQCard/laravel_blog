@@ -29,6 +29,7 @@
                     <a href="{{ route("category",['id' => $category->id]) }}">{{ $category->name }}</a>
                 </li>
             @endforeach
+            <li><a href="{{ route('login') }}">登陆</a></li>
         </ul>
     </nav>
 </header>
