@@ -45,6 +45,7 @@
                         @guest
                             <li><a href="{{ route('login') }}">登陆</a></li>
                             <li><a href="{{ route('register') }}">注册</a></li>
+                            <li><a href="{{ route('home') }}">首页</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
