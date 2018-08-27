@@ -27,6 +27,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /************************ 前台路由组 *****************************/
 Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
+    // 用户模块
     $router->get('/', 'IndexController@index')->name('home');
     // 文章详情
     $router->get('/article/{id}', 'ArticleController@show')->name('article');

@@ -70,3 +70,18 @@ function make_excerpt($value, $length = 200)
     $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
     return str_limit($excerpt, $length);
 }
+
+/**
+ * 生成随机数,前置补0
+ * @param int $min
+ * @param int $max
+ * @return int|string
+ */
+function seedRandWithZero($min = 0, $max = 2000){
+    $num = rand($min, $max);
+    $len = strlen($max) - strlen($num);
+    for ($i = 0; $i < $len; $i++){
+        $num = '0'.$num;
+    }
+    return $num;
+}

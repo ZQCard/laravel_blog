@@ -29,7 +29,23 @@
                     <a href="{{ route("category",['id' => $category->id]) }}">{{ $category->name }}</a>
                 </li>
             @endforeach
-            <li><a href="{{ route('login') }}">登陆</a></li>
+            @guest
+                <li><a href="{{ route('login') }}">登录</a></li>
+                <li><a href="{{ route('register') }}">注册</a></li>
+            @else
+                <li><a href="###">{{ Auth::user()->name }}</a></li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            退出登录
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+            @endguest
         </ul>
     </nav>
 </header>

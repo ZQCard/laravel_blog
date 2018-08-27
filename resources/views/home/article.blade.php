@@ -24,7 +24,7 @@
             </div>
             <div class="share">
                 <p class="diggit">
-                    <a href="">
+                    <a href="#" id="praise">
                         很赞哦！
                     </a>
                     (<b id="diggnum">{{ $article->praise_count }}</b>)
