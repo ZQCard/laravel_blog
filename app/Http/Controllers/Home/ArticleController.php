@@ -45,7 +45,7 @@ class ArticleController extends BaseController
             // 插入记录
             $model = new ArticlePraise();
             $model->article_id = $id;
-            $model->user_id = $user_id;
+            $model->user_id = $user_id['user_id'];
             $model->ip = $request->ip();
             dd($model->save());
         }

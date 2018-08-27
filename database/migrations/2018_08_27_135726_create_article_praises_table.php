@@ -17,7 +17,7 @@ class CreateArticlePraisesTable extends Migration
             $table->increments('id');
             $table->integer('article_id')->index();
             $table->integer('user_id')->index();
-            $table->integer('ip')->index();
+            $table->bigInteger('ip')->index();
             $table->timestamps();
         });
     }
