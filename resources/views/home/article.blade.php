@@ -24,10 +24,10 @@
             </div>
             <div class="share">
                 <p class="diggit">
-                    <a href="#" id="praise">
+                    <span id="praise">
                         很赞哦！
-                    </a>
-                    (<b id="diggnum">{{ $article->praise_count }}</b>)
+                    </span>
+                    (<b>{{ $article->praise_count }}</b>)
                 </p>
             </div>
             <div class="nextinfo">
@@ -88,4 +88,38 @@
             </div>
         </div>
     </main>
+@endsection
+
+@section('script')
+    <script src="{{ asset('layer/layer.js') }}"></script>
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN':" {{ csrf_token() }}"
+                }
+            });
+
+            // 新增页面按钮提交 post形式
+            $("#praise").click(function () {
+                var url = "{{ route('praise', ['id'=> 20]) }}";
+                var user_id = "{{ Auth::id() }}";
+                var data = {user_id: user_id};
+                $.ajax({
+                    url : url,
+                    type : 'POST',
+                    data : data,
+                    dataType : 'json',
+                    success : function (res) {
+                        if (res.status === false){
+                            layer.alert(res.message, {icon:2})
+                        } else {
+                            layer.msg(res.message)
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
 @endsection

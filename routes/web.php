@@ -31,10 +31,13 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     $router->get('/', 'IndexController@index')->name('home');
     // 文章详情
     $router->get('/article/{id}', 'ArticleController@show')->name('article');
+    // 点赞
+    $router->post('/article/{id}/praise', 'ArticleController@praise')->name('praise');
     // 分类下的文章列表
     $router->get('/category/{id}', 'CategoryController@index')->name('category');
     // 标签下的文章列表
     $router->get('/tag/{id}', 'TagController@index')->name('tag');
+
 });
 
 /************************ 后台路由组 *****************************/
