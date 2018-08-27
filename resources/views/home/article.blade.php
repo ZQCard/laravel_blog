@@ -27,7 +27,7 @@
                     <span id="praise">
                         很赞哦！
                     </span>
-                    (<b>{{ $article->praise_count }}</b>)
+                    (<b id="praise_count">{{ $article->praise_count }}</b>)
                 </p>
             </div>
             <div class="nextinfo">
@@ -114,6 +114,8 @@
                         if (res.status === false){
                             layer.alert(res.message, {icon:2})
                         } else {
+                            var count = parseInt($("#praise_count").text() + 1);
+                            $("#praise_count").text(count)
                             layer.msg(res.message)
                         }
                     }

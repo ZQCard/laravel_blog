@@ -35,19 +35,24 @@ class ArticleController extends BaseController
         if (is_null($article)){
             return $this->fail("文章不存在");
         }
-        $user_id = $request->all('user_id');
+        $data = $request->all('user_id');
         // 先查找是否点赞过，以用户为主
-        if ($user_id != null){
-            if (ArticlePraise::where('user_id', $user_id)->exists()){
-                return $this->fail("您已经点赞过了");
-            }
+        $exist = ArticlePraise::where('user_id', $data['user_id'])->orWhere('ip', ip2long($request->ip()))->exists();
+        if ($exist){
+            return $this->fail("您已经点赞过了");
+        }
 
-            // 插入记录
-            $model = new ArticlePraise();
-            $model->article_id = $id;
-            $model->user_id = $user_id['user_id'];
-            $model->ip = $request->ip();
-            dd($model->save());
+        // 插入记录
+        $model = new ArticlePraise();
+        $model->article_id = $id;
+        $model->user_id = $data['user_id'] ? : 0;
+        $model->ip = $request->ip();
+        if($model->save()){
+            // 增加文章赞数和分数
+            $article->incrementAmount($id, 'praise_count');
+
+            return $this->success("点赞成功");
+
         }
     }
 }

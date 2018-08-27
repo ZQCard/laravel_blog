@@ -10,6 +10,15 @@ class Article extends Model
 {
     use SoftDeletes;
 
+    private $score = [
+        // 浏览增加分值
+        'visit_count' => 12 * 60 * 60,
+        // 点赞增加分值
+        'praise_count' => 24 * 60 * 60,
+        // 浏览增加分值
+        'comment_count' => 48 * 60 * 60,
+    ];
+
     protected $table = 'articles';
 
     protected $dates = [
@@ -76,9 +85,14 @@ class Article extends Model
      */
     public function incrementAmount($primaryKey, $column, $amount = 1)
     {
-        DB::table($this->table)->where($this->primaryKey, $primaryKey)->increment($column, $amount);
+        DB::table($this->table)->where($this->primaryKey, $primaryKey)->increment($column, $amount, ['score' => DB::raw("`score` + ".$this->score[$column])]);
     }
 
+    /**
+     * 获取上一篇和下一篇文章
+     * @param $id
+     * @return array
+     */
     public function getNear($id)
     {
         $article_near = [];

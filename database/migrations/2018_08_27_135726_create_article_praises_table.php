@@ -16,8 +16,8 @@ class CreateArticlePraisesTable extends Migration
         Schema::create('article_praises', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('article_id')->index();
-            $table->integer('user_id')->index();
-            $table->bigInteger('ip')->index();
+            $table->integer('user_id')->index()->default(0);
+            $table->bigInteger('ip')->index()->default(0);
             $table->timestamps();
         });
     }
