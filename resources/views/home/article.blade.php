@@ -51,29 +51,31 @@
                 <h2>文章评论</h2>
                 <div class="gbko">
                     <div class="fb">
+                        {{-- 一级评论 --}}
+                        @foreach($article->articleComment as $comment)
                         <ul>
-                            <p class="fbtime"><span>2018-07-24 11:52:38</span>dancesmile</p>
-                            <p class="fbinfo">这才是我要的朋友圈</p>
+                            <p class="fbtime"><span>{{ $comment->created_at }}</span>{{ $comment->user->name }}</p>
+                            <p class="fbinfo">{{ $comment->content }}</p>
+                            <a href="###">回复</a>
+                            {{-- 子级评论 --}}
+                            @if(!is_null($comment->child))
+                                <ul>
+                                    <li>
+                                        <p class="fbtime"><span>{{ $comment->created_at }}</span></p>
+                                        <p class="fbinfo"></p>
+                                        <div class="ecomment"><span class="ecommentauthor">{{ $comment->child->user->name }}</span>
+                                            <p class="ecommenttext">{{ $comment->child->content }}</p>
+                                            <a href="###">回复</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            @endif
                         </ul>
-                    </div>
-                    <div class="fb">
-                        <ul>
-                            <p class="fbtime"><span>2018-07-24 08:52:48</span> 卜野</p>
-                            <p class="fbinfo"></p>
-                            <div class="ecomment"><span class="ecommentauthor">网友 家蚂蚁 的原文：</span>
-                                <p class="ecommenttext">坚持哟!看你每天都有写，请继续加油，再接再厉哦</p>
-                            </div>
-                        </ul>
+                        @endforeach
                     </div>
                     <form action="" method="post" name="saypl" id="saypl" onsubmit="return CheckPl(document.saypl)">
                         <div id="plpost">
-                            <p class="saying"><span><a href="">共有<script type="text/javascript" src=""></script>2条评论</a></span>来说两句吧...</p>
-                            <p class="yname"><span>用户名:</span>
-                                <input name="username" type="text" class="inputText" id="username" value="" size="16">
-                            </p>
-                            <p class="yzm"><span>验证码:</span>
-                                <input name="key" type="text" class="inputText" size="16">
-                            </p>
+                            <p class="saying"><span><a href="">共有<script type="text/javascript" src=""></script>{{ $article->comment_count }}条评论</a></span>来说两句吧...</p>
                             <input name="nomember" type="hidden" id="nomember" value="1" checked="checked">
                             <textarea name="saytext" rows="6" id="saytext"></textarea>
                             <input name="imageField" type="submit" value="提交">

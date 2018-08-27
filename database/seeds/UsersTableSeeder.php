@@ -16,12 +16,12 @@ class UsersTableSeeder extends Seeder
         $faker = app(Faker\Generator::class);
 
         $avatars = [
-            config('personal.qiniu_url').seedRandWithZero().'jpg',
-            config('personal.qiniu_url').seedRandWithZero().'jpg',
-            config('personal.qiniu_url').seedRandWithZero().'jpg',
-            config('personal.qiniu_url').seedRandWithZero().'jpg',
-            config('personal.qiniu_url').seedRandWithZero().'jpg',
-            config('personal.qiniu_url').seedRandWithZero().'jpg'
+            config('personal.qiniu_url').seedRandWithZero().'.jpg',
+            config('personal.qiniu_url').seedRandWithZero().'.jpg',
+            config('personal.qiniu_url').seedRandWithZero().'.jpg',
+            config('personal.qiniu_url').seedRandWithZero().'.jpg',
+            config('personal.qiniu_url').seedRandWithZero().'.jpg',
+            config('personal.qiniu_url').seedRandWithZero().'.jpg'
         ];
 
         // 生成数据集合
@@ -42,7 +42,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = '卡牌';
         $user->email = '445864742@qq.com';
-        $user->avatar = config('personal.qiniu_url').seedRandWithZero().'jpg';
+        $user->avatar = config('personal.qiniu_url').seedRandWithZero().'.jpg';
         $user->save();
     }
 }

@@ -78,6 +78,15 @@ class Article extends Model
     }
 
     /**
+     * 文章与评论关联
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ArticleComment()
+    {
+        return $this->hasMany('App\Models\ArticleComment');
+    }
+
+    /**
      * 根据主键增加统计数据
      * @param $primaryKey
      * @param $column
