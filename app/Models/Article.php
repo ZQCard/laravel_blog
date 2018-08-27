@@ -78,7 +78,7 @@ class Article extends Model
     }
 
     /**
-     * 根据主键增加统计数据
+     * 根据主键增加统计数据 并增加分值
      * @param $primaryKey
      * @param $column
      * @param int $amount

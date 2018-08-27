@@ -68,12 +68,6 @@
                     <form action="" method="post" name="saypl" id="saypl" onsubmit="return CheckPl(document.saypl)">
                         <div id="plpost">
                             <p class="saying"><span><a href="">共有<script type="text/javascript" src=""></script>2条评论</a></span>来说两句吧...</p>
-                            <p class="yname"><span>用户名:</span>
-                                <input name="username" type="text" class="inputText" id="username" value="" size="16">
-                            </p>
-                            <p class="yzm"><span>验证码:</span>
-                                <input name="key" type="text" class="inputText" size="16">
-                            </p>
                             <input name="nomember" type="hidden" id="nomember" value="1" checked="checked">
                             <textarea name="saytext" rows="6" id="saytext"></textarea>
                             <input name="imageField" type="submit" value="提交">
