@@ -23,16 +23,43 @@ class BaseController extends Controller
 
     public function __construct()
     {
-        // 查询分类信息
-        $this->categories = Category::orderBy('id', 'asc')->get(['id', 'name']);
+        // 使用redis缓存
+        $redis = app('redis.connection');
+        if (!$redis->exists('common.categories')){
+            $categories = Category::orderBy('id', 'asc')->get(['id', 'name']);
+            $redis->set('common.categories', json_encode($categories));
+            $this->categories = $categories;
+        } else {
+            $this->categories = json_decode($redis->get('common.categories'));
+        }
+
 
         // 查询标签信息
-        $this->tags = Tag::all(['id', 'name', 'count']);
+        if (!$redis->exists('common.tags')){
+            $tags = Tag::all(['id', 'name', 'count']);
+            $redis->set('common.tags', json_encode($tags));
+            $this->tags = $tags;
+        } else {
+            $this->tags = json_decode($redis->get('common.tags'));
+        }
 
         // 查询友情链接
-        $this->friend_link = FriendLink::where('is_show', 1)->get(['name', 'link']);
+        if (!$redis->exists('common.friend_link')){
+            $friend_link = FriendLink::where('is_show', 1)->get(['name', 'link']);
+            $redis->set('common.friend_link', json_encode($friend_link));
+            $this->friend_link = $friend_link;
+        } else {
+            $this->friend_link = json_decode($redis->get('common.friend_link'));
+        }
 
-        // 查询推荐文章
-        $this->article_recommend = Article::orderBy('score','desc')->limit(5)->get(['id', 'title']);
+        // 查询推荐文章 缓存时间为24小时
+        if (!$redis->exists('common.articles')){
+            $articles = Article::orderBy('score','desc')->limit(5)->get(['id', 'title']);
+            $redis->set('common.articles', json_encode($articles));
+            $redis->expire('common.articles', 86400);
+            $this->article_recommend = $articles;
+        } else {
+            $this->article_recommend = json_decode($redis->get('common.articles'));
+        }
     }
 }
