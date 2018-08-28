@@ -32,7 +32,9 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     // 文章详情
     $router->get('/article/{id}', 'ArticleController@show')->name('article');
     // 点赞
-    $router->post('/article/{id}/praise', 'ArticleController@praise')->name('praise');
+    $router->post('/article/{id}/praise', 'ArticleController@praise')->name('article.praise');
+    // 评论
+    $router->post('/article/{id}/comment', 'ArticleController@comment')->name('article.comment');
     // 分类下的文章列表
     $router->get('/category/{id}', 'CategoryController@index')->name('category');
     // 标签下的文章列表

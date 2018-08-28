@@ -70,7 +70,7 @@ a.curPage { color: #19585d; font-weight: bold; }
 .gbox { padding: 20px; overflow: hidden; }
 .gbox p { margin-bottom: 10px }
 p.fbtime { color: #000; }
-.fbtime span { float: right; color: #999; font-size: 12px;    width: 70px;
+.fbtime span { float: right; color: #999; font-size: 12px;    width: 100px;
     overflow: hidden;
     white-space: nowrap; }
 p.fbinfo { margin: 10px 0; }
@@ -98,6 +98,6 @@ img#plKeyImg { display: inline-block; }
 .yname { margin: 10px 10px 10px 0 }
 .yname span, .yzm span { padding-right: 10px; }
 .yzm { margin: 0 10px 10px 0 }
-#plpost input[type="submit"] { display: block; background: #303030; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
-textarea#saytext { width: 100%; }
+#commentSubmit { display: block; background: #303030; color: #fff; border: 0; line-height: 30px; padding: 0 20px; border-radius: 5px; float: right; }
+textarea#content { width: 100%; }
 #plpost { margin: 0 20px }

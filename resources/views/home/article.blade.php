@@ -54,18 +54,18 @@
                         {{-- 一级评论 --}}
                         @foreach($article->articleComment as $comment)
                         <ul>
-                            <p class="fbtime"><span>{{ $comment->created_at }}</span>{{ $comment->user->name }}</p>
+                            <p class="fbtime"><span>{{ $comment->created_at->toDateString() }}</span>{{ $comment->user->name }}</p>
                             <p class="fbinfo">{{ $comment->content }}</p>
-                            <a href="###">回复</a>
-                            {{-- 子级评论 --}}
-                            @if(!is_null($comment->child))
+                            <a href="#plpost" class="replay" data-id="{{ $comment->id }}" data-user="{{ $comment->user->name }}">回复</a>
+                            {{-- 父级评论 --}}
+                            @if(!is_null($comment->parent))
                                 <ul>
                                     <li>
-                                        <p class="fbtime"><span>{{ $comment->created_at }}</span></p>
+                                        <p class="fbtime"><span>{{ $comment->created_at->toDateString() }}</span></p>
                                         <p class="fbinfo"></p>
-                                        <div class="ecomment"><span class="ecommentauthor">{{ $comment->child->user->name }}</span>
-                                            <p class="ecommenttext">{{ $comment->child->content }}</p>
-                                            <a href="###">回复</a>
+                                        <div class="ecomment"><span class="ecommentauthor">{{ $comment->parent->user->name }}</span>
+                                            <p class="ecommenttext">{{ $comment->parent->content }}</p>
+                                            <a href="#plpost" class="replay" data-id="{{ $comment->parent->id }}" data-user="{{ $comment->parent->user->name }}" >回复</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -73,21 +73,14 @@
                         </ul>
                         @endforeach
                     </div>
-                    <form action="" method="post" name="saypl" id="saypl" onsubmit="return CheckPl(document.saypl)">
+                    <form id="commentForm" action="{{ route('article.comment', ['id'=> $article->id]) }}">
                         <div id="plpost">
-<<<<<<< HEAD
-                            <p class="saying"><span><a href="">共有<script type="text/javascript" src=""></script>2条评论</a></span>来说两句吧...</p>
-=======
-                            <p class="saying"><span><a href="">共有<script type="text/javascript" src=""></script>{{ $article->comment_count }}条评论</a></span>来说两句吧...</p>
->>>>>>> 1437bf8c14ebf3775fa5178eae40dabc608b0681
-                            <input name="nomember" type="hidden" id="nomember" value="1" checked="checked">
-                            <textarea name="saytext" rows="6" id="saytext"></textarea>
-                            <input name="imageField" type="submit" value="提交">
-                            <input name="id" type="hidden" id="id" value="106">
-                            <input name="classid" type="hidden" id="classid" value="77">
-                            <input name="enews" type="hidden" id="enews" value="AddPl">
-                            <input name="repid" type="hidden" id="repid" value="0">
-                            <input type="hidden" name="ecmsfrom" value="/joke/talk/2018-07-23/106.html">
+                            <p class="saying"><span><a href="">共有{{ $article->comment_count }}条评论</a></span>来说两句吧...</p>
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input type="hidden" name="parent_id" value="0" id="parent_id">
+                            <input type="hidden" name="article_id" value="{{ $article->id }}">
+                            <textarea name="content" rows="6" id="content"></textarea>
+                            <span id="commentSubmit">提交</span>
                         </div>
                     </form>
                 </div>
@@ -108,7 +101,7 @@
 
             // 新增页面按钮提交 post形式
             $("#praise").click(function () {
-                var url = "{{ route('praise', ['id'=> 20]) }}";
+                var url = "{{ route('article.praise', ['id'=> $article->id]) }}";
                 var user_id = "{{ Auth::id() }}";
                 var data = {user_id: user_id};
                 $.ajax({
@@ -123,6 +116,31 @@
                             var count = parseInt($("#praise_count").text() + 1);
                             $("#praise_count").text(count)
                             layer.msg(res.message)
+                        }
+                    }
+                });
+            });
+
+
+            $(".replay").click(function () {
+                $("#parent_id").val($(this).data('id'));
+                $("#content").attr('placeholder', " @ " + $(this).data('user'))
+            });
+
+            $("#commentSubmit").click(function () {
+                var form = $("#commentForm");
+                console.log(form.serialize())
+                $.ajax({
+                    url : form.attr('action'),
+                    type : 'POST',
+                    data : form.serialize(),
+                    dataType : 'json',
+                    success : function (res) {
+                        if (res.status === false){
+                            layer.alert(res.message, {icon:2});
+                        } else {
+                            layer.msg(res.message);
+                            window.location.reload();
                         }
                     }
                 });

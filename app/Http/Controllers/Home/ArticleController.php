@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Requests\ArticleCommentRequest;
 use App\Models\Article;
 use App\Models\ArticleComment;
 use App\Models\ArticlePraise;
@@ -12,10 +13,16 @@ class ArticleController extends BaseController
 {
     use JsonResponse;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     public function show($id)
     {
         $article = Article::findOrfail($id);
-        $article->articleComment = $this->getSubTree2($article->articleComment);
+        $article->articleComment = $this->processComment($article->articleComment);
         // 浏览量 + 1
         $article->incrementAmount($id, 'visit_count');
         // 获取上一篇和下一篇
@@ -58,30 +65,33 @@ class ArticleController extends BaseController
         }
     }
 
-    /**
-     * 递归处理评论
-     * @param $comments
-     * @param int $parent_id
-     * @return array
-     */
-    private function getSubTree($comments , $parent_id = 0) {
-        $tmp = [];
-        foreach ($comments as $comment) {
-            if($comment->parent_id == $parent_id) {
-                $comment->child =  $this->getSubTree($comments, $comment['id']);
-                $tmp[] = $comment;
-            }
+    public function comment($id, ArticleCommentRequest $request)
+    {
+        $comment = new ArticleComment();
+        $comment->fill($request->all());
+        if ($comment->save()){
+            // 增加评论数
+            $article = Article::find($id);
+            $article->incrementAmount($id, 'comment_count');
+            return $this->success('评论成功');
         }
-        return $tmp;
+        return $this->fail('数据库保存失败');
     }
 
-    private function getSubTree2($comments) {
+    /**
+     * 处理评论
+     * @param $comments
+     * @return array
+     */
+    private function processComment($comments) {
         $tmp = [];
-        // 每一条评论都是主评论
-        foreach ($comments as $comment){
+        foreach ($comments as $key => $comment){
             $tmp[$comment->id] = $comment;
+        }
+
+        foreach ($comments as $key => $comment){
             if ($comment->parent_id != 0){
-                $tmp[$comment->parent_id]->child = $comment;
+                $tmp[$comment->id]->parent = $tmp[$comment->parent_id];
             }
         }
         return $tmp;
