@@ -70,7 +70,7 @@ a.curPage { color: #19585d; font-weight: bold; }
 .gbox { padding: 20px; overflow: hidden; }
 .gbox p { margin-bottom: 10px }
 p.fbtime { color: #000; }
-.fbtime span { float: right; color: #999; font-size: 12px;    width: 100px;
+.fbtime span { float: right; color: #999; font-size: 12px;    width: 140px;
     overflow: hidden;
     white-space: nowrap; }
 p.fbinfo { margin: 10px 0; }

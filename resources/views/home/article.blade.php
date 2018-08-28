@@ -54,14 +54,14 @@
                         {{-- 一级评论 --}}
                         @foreach($article->articleComment as $comment)
                         <ul>
-                            <p class="fbtime"><span>{{ $comment->created_at->toDateString() }}</span>{{ $comment->user->name }}</p>
+                            <p class="fbtime"><span>{{ $comment->created_at }}</span>{{ $comment->user->name }}</p>
                             <p class="fbinfo">{{ $comment->content }}</p>
                             <a href="#plpost" class="replay" data-id="{{ $comment->id }}" data-user="{{ $comment->user->name }}">回复</a>
                             {{-- 父级评论 --}}
                             @if(!is_null($comment->parent))
                                 <ul>
                                     <li>
-                                        <p class="fbtime"><span>{{ $comment->created_at->toDateString() }}</span></p>
+                                        <p class="fbtime"><span>{{ $comment->created_at }}</span></p>
                                         <p class="fbinfo"></p>
                                         <div class="ecomment"><span class="ecommentauthor">{{ $comment->parent->user->name }}</span>
                                             <p class="ecommenttext">{{ $comment->parent->content }}</p>
