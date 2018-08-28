@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+use App\Models\ArticleComment;
 use App\Models\ArticlePraise;
 use App\Models\Traits\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class ArticleController extends BaseController
     public function show($id)
     {
         $article = Article::findOrfail($id);
+        $article->articleComment = $this->getSubTree2($article->articleComment);
         // 浏览量 + 1
         $article->incrementAmount($id, 'visit_count');
         // 获取上一篇和下一篇
@@ -54,5 +56,34 @@ class ArticleController extends BaseController
             return $this->success("点赞成功");
 
         }
+    }
+
+    /**
+     * 递归处理评论
+     * @param $comments
+     * @param int $parent_id
+     * @return array
+     */
+    private function getSubTree($comments , $parent_id = 0) {
+        $tmp = [];
+        foreach ($comments as $comment) {
+            if($comment->parent_id == $parent_id) {
+                $comment->child =  $this->getSubTree($comments, $comment['id']);
+                $tmp[] = $comment;
+            }
+        }
+        return $tmp;
+    }
+
+    private function getSubTree2($comments) {
+        $tmp = [];
+        // 每一条评论都是主评论
+        foreach ($comments as $comment){
+            $tmp[$comment->id] = $comment;
+            if ($comment->parent_id != 0){
+                $tmp[$comment->parent_id]->child = $comment;
+            }
+        }
+        return $tmp;
     }
 }

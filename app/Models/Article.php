@@ -78,7 +78,20 @@ class Article extends Model
     }
 
     /**
+<<<<<<< HEAD
      * 根据主键增加统计数据 并增加分值
+=======
+     * 文章与评论关联
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ArticleComment()
+    {
+        return $this->hasMany('App\Models\ArticleComment');
+    }
+
+    /**
+     * 根据主键增加统计数据
+>>>>>>> 1437bf8c14ebf3775fa5178eae40dabc608b0681
      * @param $primaryKey
      * @param $column
      * @param int $amount

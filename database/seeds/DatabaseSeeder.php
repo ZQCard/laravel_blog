@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 生成用户数据
-//        $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         // 生成管理员数据
         $this->call(AdminsTableSeeder::class);
          // 生成标签数据
@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleTableSeeder::class);
         // 生成文章标签关联
         $this->call(ArticleTagsTableSeeder::class);
+        // 生成评论数据
+        $this->call(ArticleCommentsTableSeeder::class);
     }
 }
