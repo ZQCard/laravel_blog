@@ -42,6 +42,7 @@ class UsersTableSeeder extends Seeder
         $user = User::find(1);
         $user->name = '卡牌';
         $user->email = '445864742@qq.com';
+        $user->password = bcrypt("123456");
         $user->avatar = config('personal.qiniu_url').seedRandWithZero().'.jpg';
         $user->save();
     }

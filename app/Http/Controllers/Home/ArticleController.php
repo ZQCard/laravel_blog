@@ -16,7 +16,7 @@ class ArticleController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['only' => ['comment']]);
     }
 
     public function show($id)
