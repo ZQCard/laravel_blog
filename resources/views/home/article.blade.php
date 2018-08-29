@@ -54,6 +54,8 @@
                         {{-- 一级评论 --}}
                         @foreach($article->articleComment as $comment)
                         <ul>
+                            {{--{{ $article->user->avatar }}--}}
+                            <img class="fb-user-img" src="{{ $comment->user->avatar }}">
                             <p class="fbtime"><span>{{ $comment->created_at }}</span>{{ $comment->user->name }}</p>
                             <p class="fbinfo">{{ $comment->content }}</p>
                             <a href="#plpost" class="replay" data-id="{{ $comment->id }}" data-user="{{ $comment->user->name }}">回复</a>
@@ -61,6 +63,8 @@
                             @if(!is_null($comment->parent))
                                 <ul>
                                     <li>
+                                        {{--{{ $comment->parent->user->avatar }}--}}
+                                        <img class="fb-user-img" src="{{ $comment->parent->user->avatar }}">
                                         <p class="fbtime"><span>{{ $comment->created_at }}</span></p>
                                         <p class="fbinfo"></p>
                                         <div class="ecomment"><span class="ecommentauthor">{{ $comment->parent->user->name }}</span>

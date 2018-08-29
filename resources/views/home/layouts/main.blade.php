@@ -33,18 +33,24 @@
                 <li><a href="{{ route('login') }}">登录</a></li>
                 <li><a href="{{ route('register') }}">注册</a></li>
             @else
-                <li><a href="###">{{ Auth::user()->name }}</a></li>
-                    <li>
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                            退出登录
-                        </a>
+                {{-- 下拉 --}}
+                <li class="user-name">
+                    <a href="###">{{ Auth::user()->name }}</a>
+                    <ul>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                退出登录
+                            </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
             @endguest
         </ul>
     </nav>
