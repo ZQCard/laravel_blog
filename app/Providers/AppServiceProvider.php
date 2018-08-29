@@ -18,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('zh');
         // 加入文章观察器
         \App\Models\Article::observe(\App\Observers\ArticleObserver::class);
+        // 加入评论观察期
+        \App\Models\ArticleComment::observe(\App\Observers\CommentObserver::class);
     }
 
     /**

@@ -140,7 +140,7 @@
                             layer.alert(res.message, {icon:2});
                         } else {
                             layer.msg(res.message);
-                            window.location.reload();
+                            // window.location.reload();
                         }
                     }
                 });

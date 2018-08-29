@@ -12,4 +12,9 @@ class ArticleComment extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function Article()
+    {
+        return $this->belongsTo('App\Models\Article');
+    }
 }
