@@ -27,6 +27,12 @@
                                         <input name="title" value="{{ $article->title }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">作者：</label>
+                                    <div class="col-sm-3">
+                                        <input name="author" value="{{ $article->author }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">封面图：</label>
@@ -61,7 +67,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标签：</label>
                                     <div class="col-sm-3">
-                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签" required multiple>
+                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签(可选)" required multiple>
                                             <option></option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}" @if(in_array($tag->id, $tag_has_ids)) selected @endif>{{ $tag->name }}</option>
@@ -81,6 +87,13 @@
                                     <label class="col-sm-3 control-label">标题：</label>
                                     <div class="col-sm-3">
                                         <input name="title" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">作者：</label>
+                                    <div class="col-sm-3">
+                                        <input name="author" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
 
@@ -115,7 +128,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标签：</label>
                                     <div class="col-sm-3">
-                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签" required multiple>
+                                        <select id="multiple" class="form-control  form-control-chosen" name="tag_ids[]" data-placeholder="请选择标签(可选)" required multiple>
                                             <option></option>
                                             @foreach($tags as $tag)
                                                 <option value="{{ $tag->id }}">{{ $tag->name }}</option>

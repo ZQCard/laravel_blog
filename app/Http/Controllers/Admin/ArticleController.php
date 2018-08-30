@@ -26,7 +26,8 @@ class ArticleController extends AdminController
     public function store(ArticleRequest $request, Article $article)
     {
         $data = $request->all();
-        $article->fill($request->all());
+
+        $article->fill($data);
 
         // 处理标签
         $this->processTag($data);
@@ -95,7 +96,7 @@ class ArticleController extends AdminController
         // 把标签信息存如session，在文章观察器中拉取
         session()->flash('article.keywords', $data['other_tags']);
         // 将标签取出来after save处理
-        $tags_data['tag_ids'] = $data['tag_ids'];
+        $tags_data['tag_ids'] = isset($data['tag_ids']) ? $data['tag_ids'] : [];
         $tags_data['other_tags'] = $data['other_tags'];
         session()->flash('article.tags', $data);
     }

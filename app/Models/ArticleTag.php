@@ -37,7 +37,7 @@ class ArticleTag extends Model
      */
     private function processTag($tags_data){
         // 标签id集合
-        $new_tag_ids = $tags_data['tag_ids'];
+        $new_tag_ids = isset($tags_data['tag_ids']) ? $tags_data['tag_ids'] : [];
         // 新标签数组
         $new_tags = explodeIgnoreComma($tags_data['other_tags']);
         // 数据库中已有的标签

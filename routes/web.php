@@ -59,8 +59,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
 /*************************  公共路由  ****************************************/
 Route::group(['namespace' => 'Common', 'middleware' => 'web'], function($router){
     $router->post('upload', 'UploaderController@upload')->name('upload');
-    $router->get('test', 'TestController@test')->name('test');
-    $router->get('view',function (){
-        return view('email.notify');
-    });
 });

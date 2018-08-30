@@ -41,6 +41,11 @@ composer install
 ```
 
 
+#### 5.设置文件存储位置
+```
+mkdir ./public/storage
+chmod -R 777 ./public/storage/
+```
 #### 6.生成数据表以及测试数据
 ```
 shell
