@@ -10,6 +10,7 @@
     <link href="{{ asset('home/css/index.css') }}" rel="stylesheet">
     <link href="{{ asset('home/css/m.css') }}" rel="stylesheet">
     <link href="{{ asset('home/css/info.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/personal.css') }}" rel="stylesheet">
     <script src="{{ asset('home/js/jquery.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('home/js/comm.js') }}"></script>
 </head>

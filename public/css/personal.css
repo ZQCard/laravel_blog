@@ -21,6 +21,6 @@
     cursor: pointer;
 }
 
-#praise:hover{
+#praise:hover, #commentSubmit:hover{
     cursor: pointer;
 }
