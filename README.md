@@ -10,6 +10,7 @@
 - Nginx 1.8+
 - PHP 7.1+
 - Mysql 5.7+
+- Redis
 
 ## 开发环境部署/安装
 
@@ -31,16 +32,45 @@ $ php artisan key:generate
 shell
 $ cp .env.example .env
 $ vim .env to config your environment
+
 ```
 
-#### 5.生成数据表以及测试数据
+#### 5.安装composer包
+```
+composer install
+```
+
+
+#### 6.生成数据表以及测试数据
 ```
 shell
 $ php artisan migrate --seed
 ```
+#### 7. 配置个人信息
+```
+config/personal.php
+```
 
-#### 6.链接入口
+#### 8.链接入口
 * 首页地址:http://www.yourdomain.com
 * 管理后台:http://www.yourdomain.com/admin
+
+#### 9.邮件发送
+```
+配置  端口根据各自服务商要求配置
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.qq.com
+MAIL_PORT=465
+MAIL_USERNAME=你的邮箱
+MAIL_PASSWORD=你的授权码
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=你的邮箱
+MAIL_FROM_NAME=niu12.com
+
+php artisan horizon  开启队列监听 且不可退出shell程序
+
+推荐使用supervisor作为监听管理
+```
 
     
