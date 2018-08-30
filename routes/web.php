@@ -39,7 +39,6 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     $router->get('/category/{id}', 'CategoryController@index')->name('category');
     // 标签下的文章列表
     $router->get('/tag/{id}', 'TagController@index')->name('tag');
-
 });
 
 /************************ 后台路由组 *****************************/
@@ -60,4 +59,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
 /*************************  公共路由  ****************************************/
 Route::group(['namespace' => 'Common', 'middleware' => 'web'], function($router){
     $router->post('upload', 'UploaderController@upload')->name('upload');
+    $router->get('test', 'TestController@test')->name('test');
+    $router->get('view',function (){
+        return view('email.notify');
+    });
 });
