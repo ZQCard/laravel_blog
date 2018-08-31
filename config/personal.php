@@ -10,5 +10,6 @@ return [
     'keywords' => 'Laravel博客,周起,卡牌',
     'description' => '卡牌,周起。一个90后程序员，现在做PHP程序，希望能一直将代码写下去，以梦为马，不负韶华。',
     'app_name' => '卡牌个人博客',
-    'qiniu_url' => 'http://pe3ocoltz.bkt.clouddn.com/'
+    'qiniu_url' => 'http://pe3ocoltz.bkt.clouddn.com/',
+    'beian' => '浙ICP备17048496号-1'
 ];

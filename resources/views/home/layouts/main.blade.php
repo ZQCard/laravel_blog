@@ -61,7 +61,7 @@
     @yield('content')
 </article>
 <footer>
-    <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+    <p>Design by <a href="{{ config('app.url') }}" target="_blank">{{ config('personal.app_name') }}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/">{{ config('personal.beian') }}</a></p>
 </footer>
 <a href="#" class="cd-top">Top</a>
 @yield('script')
