@@ -28,6 +28,13 @@ class ArticleTag extends Model
             $insert_data[] = ['article_id' => $article_id, 'tag_id' => $tag_id];
         }
         DB::table('article_tags')->insert($insert_data);
+
+        // 更新标签使用数量
+        $count_tag_use_ids = DB::table('article_tags')->distinct()->pluck('tag_id');
+        foreach ($count_tag_use_ids as $id){
+            $count = DB::table('article_tags')->where('tag_id', $id)->count();
+             DB::table('tags')->where('id', $id)->update(['count' => $count]);
+        }
     }
 
     /**

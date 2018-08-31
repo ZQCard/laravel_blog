@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'count'
     ];
 
     public function scopeWithOrder($query,  $order)
