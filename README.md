@@ -41,26 +41,28 @@ composer install
 ```
 
 
-#### 5.设置文件存储位置
+#### 6.设置文件存储位置
 ```
 mkdir ./public/storage
 chmod -R 777 ./public/storage/
 ```
-#### 6.生成数据表以及测试数据
+#### 7.生成数据表以及测试数据
 ```
 shell
 $ php artisan migrate --seed
 ```
-#### 7. 配置个人信息
+#### 8. 配置个人信息
 ```
 config/personal.php
 ```
 
-#### 8.链接入口
+#### 9.链接入口
 * 首页地址:http://www.yourdomain.com
 * 管理后台:http://www.yourdomain.com/admin
+管理员默认账号 card
+管理员默认密码 123456
 
-#### 9.邮件发送
+#### 10.邮件发送
 ```
 配置  端口根据各自服务商要求配置
 
