@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
     $router->get('/category/{id}', 'CategoryController@index')->name('category');
     // 标签下的文章列表
     $router->get('/tag/{id}', 'TagController@index')->name('tag');
+    // 搜索相关文章列表
+    $router->get('/search', 'SearchController@index')->name('search');
 });
 
 /************************ 后台路由组 *****************************/
