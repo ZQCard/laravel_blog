@@ -20,6 +20,12 @@ class AppServiceProvider extends ServiceProvider
         \App\Models\Article::observe(\App\Observers\ArticleObserver::class);
         // 加入评论观察期
         \App\Models\ArticleComment::observe(\App\Observers\CommentObserver::class);
+        // 加入标签观察期
+        \App\Models\Tag::observe(\App\Observers\TagObserver::class);
+        // 加入分类观察期
+        \App\Models\Category::observe(\App\Observers\CategoryObserver::class);
+        // 加入友情链接观察期
+        \App\Models\FriendLink::observe(\App\Observers\FriendLinkObserver::class);
     }
 
     /**
