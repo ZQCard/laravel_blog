@@ -56,6 +56,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'
     Route::patch('friend_link', 'FriendLinkController@patch')->name('friend_link.patch');
     Route::resource('article', 'ArticleController');
     Route::post('article/restore', 'ArticleController@restore')->name('article.restore');
+
+    $router->match(['get', 'post'], 'person/about', 'PersonController@about')->name('person.about');
 });
 
 /*************************  公共路由  ****************************************/

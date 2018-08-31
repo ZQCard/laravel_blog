@@ -75,6 +75,18 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-label">个性化</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('person.about') }}"><i class="fa fa-id-card"></i>关于我</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

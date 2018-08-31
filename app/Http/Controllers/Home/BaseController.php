@@ -20,6 +20,11 @@ class BaseController extends Controller
     protected $categories = null;
     protected $friend_link = null;
     protected $article_recommend = null;
+    protected $about = [
+        'user' => '暂无',
+        'avatar' => '',
+        'content' => '暂无介绍',
+    ];
 
     public function __construct()
     {
@@ -60,6 +65,11 @@ class BaseController extends Controller
             $this->article_recommend = $articles;
         } else {
             $this->article_recommend = json_decode($redis->get('common.articles'));
+        }
+
+        // 获取关于我
+        if ($redis->exists('person.about')){
+            $this->about =json_decode($redis->get('person.about'), true);
         }
     }
 }

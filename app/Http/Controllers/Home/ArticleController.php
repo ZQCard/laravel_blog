@@ -28,6 +28,7 @@ class ArticleController extends BaseController
         // 获取上一篇和下一篇
         $article_near = $article->getNear($id);
         return view('home.article',[
+            'about' => $this->about,
             'title' => $article->title,
             'article' => $article,
             'article_near' => $article_near,

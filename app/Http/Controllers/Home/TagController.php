@@ -16,6 +16,7 @@ class TagController extends BaseController
         // 根据标签文章关联表进行分页
         $article_tags = ArticleTag::where('tag_id', $id)->paginate($this->pageSize);
         return view('home.tag',[
+            'about' => $this->about,
             'title' => $tag->name,
             'article_tags' => $article_tags,
             'tags' => $this->tags,

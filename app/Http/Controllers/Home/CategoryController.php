@@ -16,6 +16,7 @@ class CategoryController extends BaseController
         $articles = Article::where('category_id', $id)->orderBy('id','desc')->select(['id', 'title', 'poster', 'excerpt'])->paginate($this->pageSize);
 
         return view('home.category',[
+            'about' => $this->about,
             'title' => $category->name,
             'articles' => $articles,
             'tags' => $this->tags,

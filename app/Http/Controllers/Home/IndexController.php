@@ -10,6 +10,7 @@ class IndexController extends BaseController
     {
         $articles = Article::orderBy('id','desc')->select(['id', 'title', 'poster', 'excerpt'])->paginate($this->pageSize);
         return view('home.index',[
+            'about' => $this->about,
             'title' => $this->title,
             'articles' => $articles,
             'tags' => $this->tags,

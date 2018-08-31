@@ -17,6 +17,7 @@ class SearchController extends BaseController
                     ->paginate($this->pageSize);
         $this->title = $keyword;
         return view('home.search',[
+            'about' => $this->about,
             'title' => $this->title,
             'articles' => $articles,
             'tags' => $this->tags,
