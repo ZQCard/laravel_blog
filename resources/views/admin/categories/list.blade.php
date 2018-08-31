@@ -1,17 +1,7 @@
 @extends('admin.layouts.main')
 @section('content')
     <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle count-info" data-toggle="dropdown" id="linkOrder" href="#">
-                            <i class="fa fa-bell"></i> <span class="label label-primary"></span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        @include('admin.layouts.header')
         <div class="row J_mainContent" id="content-main">
             <div class="col-sm-12">
                 <!-- Example Toolbar -->
