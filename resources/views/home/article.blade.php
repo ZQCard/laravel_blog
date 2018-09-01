@@ -132,8 +132,12 @@
             });
 
             $("#commentSubmit").click(function () {
+                var user_id = "{{ Auth::id() }}";
+                if (user_id === ""){
+                    layer.msg("评论需要登陆噢");
+                    return false;
+                }
                 var form = $("#commentForm");
-                console.log(form.serialize())
                 $.ajax({
                     url : form.attr('action'),
                     type : 'POST',
