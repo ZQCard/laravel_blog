@@ -6,7 +6,7 @@ use App\Http\Requests\FriendLinkRequest;
 use App\Models\FriendLink;
 use Illuminate\Http\Request;
 
-class FriendLinkController extends AdminController
+class FriendLinkController extends BaseController
 {
     // 友情链接列表
     public function index(FriendLink $friendLink)

@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class ArticleController extends AdminController
+class ArticleController extends BaseController
 {
     public function index(Request $request, Article $article)
     {

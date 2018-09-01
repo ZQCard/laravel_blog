@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Traits\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class BaseController extends Controller
 {
     use JsonResponse;
     protected $ajaxReturnData = ['url' => '', 'message' => '操作成功'];

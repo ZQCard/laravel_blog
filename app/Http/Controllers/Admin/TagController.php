@@ -6,7 +6,7 @@ use App\Http\Requests\TagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class TagController extends AdminController
+class TagController extends BaseController
 {
     // 标签列表
     public function index(Request $request, Tag $tag)

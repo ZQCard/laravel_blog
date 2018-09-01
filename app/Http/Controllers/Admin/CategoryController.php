@@ -6,7 +6,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends AdminController
+class CategoryController extends BaseController
 {
     // 分类列表
     public function index(Category $category)

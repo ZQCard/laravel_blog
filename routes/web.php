@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Authentication Routes...
+// Auth用户认证路由
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -45,22 +45,36 @@ Route::group(['namespace' => 'Home', 'middleware' => 'web'], function($router){
 
 /************************ 后台路由组 *****************************/
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'web'], function($router){
+    // 登陆前端页面
     $router->get('login', 'LoginController@index')->name('admin.login');
+    // 登陆处理
     $router->post('login', 'LoginController@login');
+    // 退出登陆
     $router->post('logout', 'LoginController@logout')->name('admin.logout');
-    $router->get('/', 'AdminController@home')->name('admin.index');
-    $router->get('index', 'AdminController@home')->name('admin.index');
+    // 后台首页
+    $router->get('/', 'BaseController@home')->name('admin.index');
+    // 后台首页
+    $router->get('index', 'BaseController@home')->name('admin.index');
+    // 标签资源路由
     Route::resource('tag', 'TagController');
+    // 分类资源路由
     Route::resource('category', 'CategoryController');
+    // 友情链接资源路由
     Route::resource('friend_link', 'FriendLinkController');
+    // 友情链接开启关闭
     Route::patch('friend_link', 'FriendLinkController@patch')->name('friend_link.patch');
+    // 文章资源路由
     Route::resource('article', 'ArticleController');
+    // 文章回复
     Route::post('article/restore', 'ArticleController@restore')->name('article.restore');
-
+    // 关于我设置
     $router->match(['get', 'post'], 'person/about', 'PersonController@about')->name('person.about');
+    // 管理员个人信息设置
+    $router->match(['get', 'post'], 'person/info', 'PersonController@info')->name('person.info');
 });
 
 /*************************  公共路由  ****************************************/
 Route::group(['namespace' => 'Common', 'middleware' => 'web'], function($router){
+    // 文件上传
     $router->post('upload', 'UploaderController@upload')->name('upload');
 });
