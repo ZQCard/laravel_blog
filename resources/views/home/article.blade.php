@@ -65,7 +65,7 @@
                                     <li>
                                         {{--{{ $comment->parent->user->avatar }}--}}
                                         <img class="fb-user-img" src="{{ $comment->parent->user->avatar }}">
-                                        <p class="fbtime"><span>{{ $comment->created_at }}</span></p>
+                                        <p class="fbtime"><span>{{ $comment->parent->created_at }}</span></p>
                                         <p class="fbinfo"></p>
                                         <div class="ecomment"><span class="ecommentauthor">{{ $comment->parent->user->name }}</span>
                                             <p class="ecommenttext">{{ $comment->parent->content }}</p>
