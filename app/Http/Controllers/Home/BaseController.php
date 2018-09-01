@@ -31,7 +31,7 @@ class BaseController extends Controller
         // 使用redis缓存
         $redis = app('redis.connection');
         if (!$redis->exists('common.categories')){
-            $categories = Category::orderBy('id', 'asc')->get(['id', 'name']);
+            $categories = Category::orderBy('sort', 'desc')->get(['id', 'name']);
             $redis->set('common.categories', json_encode($categories));
             $this->categories = $categories;
         } else {

@@ -36,6 +36,10 @@
                                                 <div class="th-inner ">分类名称</div>
                                                 <div class="fht-cell"></div>
                                             </th>
+                                            <th data-field="name" tabindex="0">
+                                                <div class="th-inner ">排序值</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
                                             <th style="" data-field="name" tabindex="0">
                                                 <div class="th-inner ">创建时间</div>
                                                 <div class="fht-cell"></div>
@@ -61,6 +65,9 @@
                                                 </td>
                                                 <td>
                                                     {{ $category->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $category->sort }}
                                                 </td>
                                                 <td>
                                                     {{ $category->created_at }}

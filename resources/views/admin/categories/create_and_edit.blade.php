@@ -23,11 +23,23 @@
                                         <input name="name" value="{{ $category->name }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">排序值：</label>
+                                    <div class="col-sm-3">
+                                        <input name="sort" value="{{ $category->sort }}" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
                             @else
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">分类名称：</label>
                                     <div class="col-sm-3">
                                         <input name="name" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">排序值：</label>
+                                    <div class="col-sm-3">
+                                        <input name="sort" value="" minlength="2" type="text" class="form-control" required="" aria-required="true">
                                     </div>
                                 </div>
                             @endif

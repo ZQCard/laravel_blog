@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class CategoryController extends AdminController
 {
     // 分类列表
-    public function index(Request $request, Category $category)
+    public function index(Category $category)
     {
-        $categories = $category->paginate(20);
+        $categories = $category->orderBy('sort', 'desc')->paginate(20);
         return view('admin.categories.list', compact('categories'));
     }
 
