@@ -27,7 +27,7 @@ class Article extends Model
         'deleted_at'
     ];
 
-    protected $fillable = ['category_id', 'title', 'content', 'poster', 'author'];
+    protected $fillable = ['category_id', 'title', 'content', 'poster', 'author', 'tips'];
 
     private $select = ['id', 'category_id', 'score', 'poster', 'title', 'visit_count', 'comment_count', 'created_at', 'updated_at', 'deleted_at'];
 

@@ -17,6 +17,12 @@
                     @foreach($article->tag as $tag)
                         <a href="{{ route('tag', ['id' => $tag->tag_id]) }}">{{ $tag->name }}</a> &nbsp;
                     @endforeach
+                    @foreach(explode(',', $article->tips) as $tip)
+                        @if(empty($tip))
+                            @continue
+                        @endif
+                        <a href="#">{{ $tip }}</a> &nbsp;
+                    @endforeach
                 </div>
                 <div class="news_con">
                      {!! $article->content !!}

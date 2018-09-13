@@ -82,6 +82,13 @@
 
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">特有标签：</label>
+                                    <div class="col-sm-3">
+                                        <input name="tips" value="{{ $article->tips }}" minlength="2" type="text" class="form-control" required="" data-placeholder="添加特有标签,以逗号分隔" aria-required="true">
+
+                                    </div>
+                                </div>
                             @else
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">标题：</label>
@@ -140,6 +147,13 @@
                                     <label class="col-sm-3 control-label">未存标签：</label>
                                     <div class="col-sm-3">
                                         <input name="other_tags" value="" minlength="2" type="text" class="form-control" required="" data-placeholder="添加未存标签,以逗号分隔" aria-required="true">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">特有标签：</label>
+                                    <div class="col-sm-3">
+                                        <input name="tips" value="" minlength="2" type="text" class="form-control" required="" data-placeholder="添加特有标签,以逗号分隔" aria-required="true">
 
                                     </div>
                                 </div>
