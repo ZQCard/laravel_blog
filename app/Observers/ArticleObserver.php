@@ -12,7 +12,7 @@ class ArticleObserver
      * 前置方法 before insert|before update
      * @param Article $article
      */
-    public function saving(Article $article)
+    public function creating(Article $article)
     {
         $article->score = time();
         $article->keywords = config("personal.keywords").','.session('article.keywords');
