@@ -10,7 +10,7 @@ class ArticleTag extends Model
 
     public function Article()
     {
-        return $this->hasOne('App\Models\Article', 'id', 'article_id')->select(['id', 'poster', 'title']);
+        return $this->hasOne('App\Models\Article', 'id', 'article_id')->select(['id', 'poster', 'title', 'excerpt']);
     }
 
     /**
